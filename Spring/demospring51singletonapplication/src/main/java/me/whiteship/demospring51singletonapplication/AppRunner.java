@@ -37,7 +37,7 @@ public class AppRunner implements ApplicationRunner {
 //        System.out.println(ctx.getBean(Single.class).getProto());
 //        System.out.println(ctx.getBean(Single.class).getProto());
         /*
-        * proto임에도 같은 빈이 찍힌다...*/
+         * proto임에도 같은 빈이 찍힌다...*/
         Environment environment = ctx.getEnvironment();
         System.out.println(Arrays.toString(environment.getActiveProfiles()));
         System.out.println(Arrays.toString(environment.getDefaultProfiles()));

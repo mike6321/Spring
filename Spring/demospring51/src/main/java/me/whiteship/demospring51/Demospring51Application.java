@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 @SpringBootApplication
 public class Demospring51Application {
 
-//    @Autowired
+    //    @Autowired
 //    MyService myService;
 //    @AliasFor("basePackages") 이것 때문에 패키지가 다르기때문에 에러가 떨어진다ß
     @Autowired

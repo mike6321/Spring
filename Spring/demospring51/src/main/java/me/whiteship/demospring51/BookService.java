@@ -21,6 +21,7 @@ public class BookService {
         this.bookRepositories.forEach(System.out::println);
         //System.out.println(bookRepository.getClass());
     }
+
     @PostConstruct
     public void setUp() {
 
@@ -33,9 +34,9 @@ public class BookService {
 //      1 this.bookRepository = bookRepository;
 //    }
     /*
-    * 단순 생성자 주입인데 왜 실패일까?˜˜
-    *    @Autowired
-    * */
+     * 단순 생성자 주입인데 왜 실패일까?˜˜
+     *    @Autowired
+     * */
 
     //error가 발생했던 이유는 BookRepository에 빈이 생성되지 않았기 때문이다.ß
 //    public BookService (BookRepository bookRepository){
