@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class AppRunner implements ApplicationRunner {
     @Autowired
     ApplicationEventPublisher publishEvent;
-    //ApplicationContext applicationContext;
+    //ApplicationContext applicationContext  ;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
