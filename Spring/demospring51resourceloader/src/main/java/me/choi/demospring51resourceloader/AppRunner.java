@@ -9,37 +9,40 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 @Component
 public class AppRunner implements ApplicationRunner {
     @Autowired
-    ApplicationContext resourceLoader;
+    Validator validator;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        //var ctx = new ClassPathXmlApplicationContext("abcd.xml");
-        //var ctx = new FileSystemXmlApplicationContext("abcd.xml");
-        //var ctx = new WebApplicationContext("abcd.xml");
-        //문자열이 리소스로 변환된다.
-        //사용하는 문자열은 자신이 사용하는 ApplicationContext가 무엇인가 따라서 달라진다.
+        System.out.println(validator.getClass());
 
-        //resource를 가제하려면 prefix를 사용하면 됩니다...!
-        System.out.println(resourceLoader.getClass());
+        Event event = new Event();
+        event.setLimit(-1);
+        event.setEmail("aaadfdfdf");
+        EventValidator eventValidator = new EventValidator();
+        Errors errors = new BeanPropertyBindingResult(event,"event"); //실질적으로 이 클래스를 직접 사용할 일은 없다.
+                                                                                 // 스프링 Mvc가 자동으로 생성해주기 때문에
+        //eventValidator.validate(event,errors);
+        validator.validate(event,errors);
+        System.out.println(errors.hasErrors());
 
-        //classpath:를 사용하지 않은 경우에는 오류가 터집니다!
-        Resource resource = resourceLoader.getResource("classpath:test.txt");
-        Resource resource2 = resourceLoader.getResource("file:///test.txt");
-        Resource resource3 = resourceLoader.getResource("file:///test.txt");
-        System.out.println(resource.getClass());
-        System.out.println(resource2.getClass());
-        System.out.println(resource3.getClass());
+        errors.getAllErrors().forEach(e ->{
+            System.out.println("========error code======");
+            Arrays.stream(e.getCodes()).forEach(System.out::println);
+            System.out.println(e.getDefaultMessage());
+        });
 
-        System.out.println(resource.exists());
-        System.out.println(resource.getDescription());
-        System.out.println(Files.readString(Path.of(resource.getURI())));;
     }
 }
