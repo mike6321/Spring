@@ -7,4 +7,5 @@ public interface EventService {
     void publicEvnet();
 
     void deleteEvent();
+
 }

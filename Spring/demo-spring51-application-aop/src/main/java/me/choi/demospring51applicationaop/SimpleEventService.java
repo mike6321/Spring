@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SimpleEventService implements EventService{
+    @PerLogging
     @Override
     public void createEvent() {
         //long begin = System.currentTimeMillis();
@@ -18,7 +19,7 @@ public class SimpleEventService implements EventService{
         //System.out.println(System.currentTimeMillis()-begin);
 
     }
-
+    @PerLogging
     @Override
     public void publicEvnet() {
         //long begin = System.currentTimeMillis();
@@ -31,7 +32,9 @@ public class SimpleEventService implements EventService{
         //System.out.println(System.currentTimeMillis()-begin);
     }
 
+    @Override
     public void deleteEvent() {
         System.out.println("Delete an evnet");
     }
+
 }
