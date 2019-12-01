@@ -20,9 +20,9 @@ public class Application {
     public static void main(String[] args) {
         //SpringApplication.run(Application.class,args);
         /*
-        * ServletWebServerFactory bean 이 빠졌다고 나온다.
-        * EnableAutoConfiguration에서 자동으로 만들어주는 bean 이다.
-        * */
+         * ServletWebServerFactory bean 이 빠졌다고 나온다.
+         * EnableAutoConfiguration에서 자동으로 만들어주는 bean 이다.
+         * */
         //하지만 웹으로 사용할 수는 없다.
         SpringApplication application = new SpringApplication(Application.class);
         application.setWebApplicationType(WebApplicationType.NONE);

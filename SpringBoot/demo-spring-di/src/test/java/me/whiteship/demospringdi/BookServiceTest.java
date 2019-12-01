@@ -18,7 +18,7 @@ public class BookServiceTest {
     BookService bookService;
 
     @Test
-    public void di(){
+    public void di() {
         Assert.assertNotNull(bookService);
         Assert.assertNotNull(bookService.bookRepository);
     }

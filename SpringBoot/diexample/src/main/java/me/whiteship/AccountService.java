@@ -7,7 +7,7 @@ public class AccountService {
     @Inject
     AccountRepository accountRepository;
 
-    public void join(){
+    public void join() {
         System.out.println("SERVICE.JOIN");
         accountRepository.save();
     }
