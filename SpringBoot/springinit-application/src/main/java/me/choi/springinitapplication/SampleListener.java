@@ -1,20 +1,21 @@
 package me.choi.springinitapplication;
 
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+public class SampleListener  {
 /*
-* ApplicationStartingEvent
-* 애플리케이션 구동시 맨 처음에 작동하는 이벤트로서
-* 이 이벤트가 작동할 시에는 applicaioncontext가 만들어지지 않았다.
+* 어떠한 빈에 생성자가 한개이고  파라미터가 빈 인 경우 스프링이 알아서 주입시켜준다.
 * */
-public class SampleListener implements ApplicationListener<ApplicationStartingEvent> {
-    @Override
-    public void onApplicationEvent(ApplicationStartingEvent applicationStartingEvent) {
-        System.out.println("==============================");
-        System.out.println("Application is Starting...");
-        System.out.println("==============================");
+
+
+    public SampleListener(ApplicationArguments arguments) {
+        System.out.println("foo : "+arguments.containsOption("foo"));
+        System.out.println("bar: "+arguments.containsOption("bar"));
     }
+
+
 }
