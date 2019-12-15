@@ -1,5 +1,7 @@
 package kr.co.choi.eatgo.interfaces;
 
+import kr.co.choi.eatgo.domin.MenuItem;
+import kr.co.choi.eatgo.domin.MenuItemRepository;
 import kr.co.choi.eatgo.domin.Restaurant;
 import kr.co.choi.eatgo.domin.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ public class RestaurantController {
     * 이는 결합도가 높아지는 단점이 있음
     * 따로 의존성을 주입하는 방안으로 코딩해봅시다.*/
     @Autowired
-    private RestaurantRepository repository;
+    private RestaurantRepository restaurantRepository;
+    @Autowired
+    private MenuItemRepository menuItemRepository;
 
 //    @Autowired
 //    private RestaurantRepository repository;
@@ -29,7 +33,7 @@ public class RestaurantController {
 //
 //        restaurants.add(restaurant);
 
-        List<Restaurant> restaurants = repository.findAll();
+        List<Restaurant> restaurants = restaurantRepository.findAll();
 
         return restaurants;
     }
@@ -42,7 +46,11 @@ public class RestaurantController {
 //        restaurants.add(new Restaurant(2020L,"Cyber Food","Seoul"));
 
 //        List<Restaurant> restaurants = repository.findAll();
-        Restaurant restaurants = repository.findById(id);
+        Restaurant restaurants = restaurantRepository.findById(id);
+
+        List<MenuItem> menuItems = menuItemRepository.findAllByRestauranId(id);
+        //restaurants.addMenuItem(new MenuItem("Kimchi"));
+        restaurants.setMenuItem(menuItems);
 
         return restaurants;
 

@@ -1,5 +1,6 @@
 package kr.co.choi.eatgo.interfaces;
 
+import kr.co.choi.eatgo.domin.MenuItemRepositoryImpl;
 import kr.co.choi.eatgo.domin.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,8 @@ public class RestaurantControllerTest {
 
     @SpyBean
     private RestaurantRepositoryImpl restaurantRepositoryImpl;
+    @SpyBean
+    private MenuItemRepositoryImpl menuItemRepository;
 
     @Test
     public void list() throws Exception {
@@ -51,7 +54,10 @@ public class RestaurantControllerTest {
                 .andExpect(content().string(
                         containsString("\"name\":\"Cyber Food\"")))
                 .andExpect(content().string(
-                        containsString("\"id\":2020")));
+                        containsString("\"id\":2020")))
+                .andExpect(content().string(
+                        containsString("Kimchi")
+                ));
     }
 
 }
