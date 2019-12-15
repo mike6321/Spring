@@ -23,6 +23,8 @@ public class RestaurantController {
     @GetMapping("/restaurants")
     public List<Restaurant> list() {
 
+
+
         List<Restaurant> restaurants = restaurantService.getRestaurants();
 
         return restaurants;
