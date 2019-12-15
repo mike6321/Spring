@@ -1,5 +1,6 @@
 package kr.co.choi.eatgo.interfaces;
 
+import kr.co.choi.eatgo.application.RestaurantService;
 import kr.co.choi.eatgo.domin.MenuItemRepositoryImpl;
 import kr.co.choi.eatgo.domin.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
+    @SpyBean(RestaurantService.class)
+    private RestaurantService restaurantService;
 
     @SpyBean
     private RestaurantRepositoryImpl restaurantRepositoryImpl;
