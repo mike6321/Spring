@@ -11,19 +11,10 @@ public class ApplicationConfig {
         return new BookRepository();
     }
 
-//    @Bean
-//    public BookService bookService() {
-//        BookService bookService = new BookService();
-//        bookService.setBookRepository(bookRepository());
-//
-//        return bookService;
-//    }
+
     @Bean
     public BookService bookService(BookRepository bookRepository) {
-        System.out.println(bookRepository);
-        BookService bookService = new BookService();
-        bookService.setBookRepository(bookRepository);
-
-        return bookService;
+        //@Autowired를 사용하는 방법
+        return new BookService();
     }
 }
