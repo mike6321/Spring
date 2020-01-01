@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
 
-    @Autowired @Qualifier("myBookRepository")
-    BookRepository bookRepository;
+    @Autowired
+    List<BookRepository> bookRepository;
 
     public void printBookRepository() {
-        System.out.println(bookRepository.getClass());
+        this.bookRepository.forEach(System.out::println);
     }
 }
