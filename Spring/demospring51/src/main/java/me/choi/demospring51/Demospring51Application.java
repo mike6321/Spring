@@ -10,9 +10,10 @@ import java.util.Arrays;
 public class Demospring51Application {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext run = SpringApplication.run(Demospring51Application.class, args);
-		String[] beanDefinitionNames = run.getBeanDefinitionNames();
-		System.out.println(Arrays.toString(beanDefinitionNames));
+//		ConfigurableApplicationContext run = SpringApplication.run(Demospring51Application.class, args);
+////		String[] beanDefinitionNames = run.getBeanDefinitionNames();
+////		System.out.println(Arrays.toString(beanDefinitionNames));
+		SpringApplication.run(Demospring51Application.class, args);
 	}
 
 }
