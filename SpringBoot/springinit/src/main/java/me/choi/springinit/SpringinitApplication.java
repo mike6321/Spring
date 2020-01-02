@@ -11,17 +11,9 @@ import java.io.PrintStream;
 public class SpringinitApplication {
 
 	public static void main(String[] args) {
-//		SpringApplication.run(SpringinitApplication.class, args);
 		SpringApplication springApplication = new SpringApplication(SpringinitApplication.class);
-		springApplication.setBanner(new Banner() {
-			@Override
-			public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
-				out.println("===========================");
-				out.println("Hello");
-				out.println("===========================");
-			}
-		});
-		springApplication.setBannerMode(Banner.Mode.OFF);
+		springApplication.addListeners(new SampleListener());
+
 		springApplication.run(args);
 	}
 }
