@@ -13,7 +13,7 @@ public class SpringinitApplication {
 
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(SpringinitApplication.class);
-		springApplication.setWebApplicationType(WebApplicationType.);
+		springApplication.setWebApplicationType(WebApplicationType.NONE);
 		springApplication.run(args);
 	}
 }
