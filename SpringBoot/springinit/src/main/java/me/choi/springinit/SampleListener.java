@@ -1,5 +1,6 @@
 package me.choi.springinit;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -10,9 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleListener implements ApplicationRunner {
 
+    @Value("${choi.name}")
+    private String name;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("foo : "+ args.containsOption("foo"));
-        System.out.println("bar : "+ args.containsOption("bar"));
+        System.out.println("===========================");
+        System.out.println(name);
+        System.out.println("===========================");
     }
 }
