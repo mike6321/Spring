@@ -14,21 +14,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SampleListener implements ApplicationRunner {
-    @Bean
-    @ConfigurationProperties("server")
-    public ServerProperties serverProperties () {
-        return new ServerProperties();
-    }
 
     @Autowired
-    ChoiProperties choiProperties;
+    private String hello;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===========================");
-        System.out.println(choiProperties.getName());
-        System.out.println(choiProperties.getAge());;
-        System.out.println(ServerProperties.Tomcat.Resource.class);
+        System.out.println(hello);
         System.out.println("===========================");
     }
 }
