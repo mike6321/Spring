@@ -14,7 +14,8 @@ public class SampleListener implements ApplicationRunner {
     @Value("${choi.name}")
     private String name;
 
-
+    @Value("${choi.age}")
+    private int age;
 
 
 
@@ -22,7 +23,7 @@ public class SampleListener implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===========================");
         System.out.println(name);
-
+        System.out.println(age);
         System.out.println("===========================");
     }
 }
