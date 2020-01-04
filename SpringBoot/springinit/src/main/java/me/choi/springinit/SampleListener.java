@@ -14,6 +14,8 @@ public class SampleListener implements ApplicationRunner {
     @Value("${choi.name}")
     private String name;
 
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===========================");
