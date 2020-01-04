@@ -1,5 +1,6 @@
 package me.choi.springinit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -11,19 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleListener implements ApplicationRunner {
 
-    @Value("${choi.name}")
-    private String name;
-
-    @Value("${choi.age}")
-    private int age;
-
-
+    @Autowired
+    ChoiProperties choiProperties;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===========================");
-        System.out.println(name);
-        System.out.println(age);
+        System.out.println(choiProperties.getName());
+        System.out.println(choiProperties.getAge());;
         System.out.println("===========================");
     }
 }
