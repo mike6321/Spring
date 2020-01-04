@@ -18,10 +18,17 @@ public class SampleListener implements ApplicationRunner {
     @Autowired
     private String hello;
 
+    @Autowired
+    private ChoiProperties choiProperties;
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("===========================");
         System.out.println(hello);
+        System.out.println(choiProperties.getName());
+        System.out.println(choiProperties.getFullName());
+        System.out.println(choiProperties.getAge());
         System.out.println("===========================");
     }
 }
