@@ -28,10 +28,10 @@ public class SampleListener implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        logger.info("------------------------------");
-        logger.info(hello);
-        logger.info(choiProperties.getName());
-        logger.info(choiProperties.getFullName());
-        logger.info("------------------------------");
+        logger.debug("------------------------------");
+        logger.debug(hello);
+        logger.debug(choiProperties.getName());
+        logger.debug(choiProperties.getFullName());
+        logger.debug("------------------------------");
     }
 }
