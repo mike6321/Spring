@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(properties = "choi.name = junwoo2")
 class SpringinitApplicationTests {
 
 	@Autowired
@@ -19,7 +19,7 @@ class SpringinitApplicationTests {
 	@Test
 	@DisplayName("test")
 	void contextLoads() {
-		assertEquals(environment.getProperty("choi.name"),"junwoo");
+		assertEquals(environment.getProperty("choi.name"),"junwoo2");
 	}
 
 }
