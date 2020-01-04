@@ -11,7 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@TestPropertySource(properties = "choi.name=junwoo3")
+@TestPropertySource(locations = "classpath:/test.properties")
 @SpringBootTest
 class SpringinitApplicationTests {
 
@@ -21,6 +21,11 @@ class SpringinitApplicationTests {
 	@Test
 	@DisplayName("test")
 	void contextLoads() {
-		assertEquals(environment.getProperty("choi.name"),"junwoo3");
+		assertAll(
+				() ->assertEquals(environment.getProperty("choi.name"),"junwoojjang")
+		);
+
+
 	}
+
 }
