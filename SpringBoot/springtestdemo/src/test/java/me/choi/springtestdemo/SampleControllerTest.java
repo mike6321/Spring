@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith({SpringExtension.class})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -23,6 +24,7 @@ public class SampleControllerTest {
     @Test
     public void hello() throws Exception {
         mockMvc.perform(get("/hello"))
+                .andExpect(status().isOk())
                 .andExpect(content().string("hellojunwoo"))
                 .andDo(print());
     }
