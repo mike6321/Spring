@@ -9,6 +9,15 @@
     <listener-class>me.choi.MyListener</listener-class>
   </listener>
 
+  <filter>
+    <filter-name>myfilter</filter-name>
+    <filter-class>me.choi.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>myfilter</filter-name>
+    <servlet-name>hello</servlet-name>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>hello</servlet-name>
     <servlet-class>me.choi.HelloServlet</servlet-class>
@@ -18,4 +27,5 @@
     <servlet-name>hello</servlet-name>
     <url-pattern>/hello</url-pattern>
 </servlet-mapping>
+
 </web-app>

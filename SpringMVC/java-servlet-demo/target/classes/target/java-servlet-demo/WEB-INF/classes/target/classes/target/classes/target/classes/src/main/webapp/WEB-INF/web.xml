@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <listener>
+    <listener-class>me.choi.MyListener</listener-class>
+  </listener>
 
   <servlet>
     <servlet-name>hello</servlet-name>
