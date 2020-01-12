@@ -15,12 +15,5 @@ public class SpringbootgettingstartedApplication {
         springApplication.run(args);
     }
 
-    @Bean
-    public Holoman holoman() {
-        Holoman holoman = new Holoman();
-        holoman.setName("choijunwoo");
-        holoman.setHowLong(60);
 
-        return holoman;
-    }
 }
