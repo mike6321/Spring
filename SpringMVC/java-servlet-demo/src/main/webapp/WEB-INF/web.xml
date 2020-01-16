@@ -15,6 +15,16 @@
     <param-value>me.choi.AppConfig</param-value>
   </context-param>
 
+  <filter>
+    <filter-name>myfilter</filter-name>
+    <filter-class>me.choi.MyFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>myfilter</filter-name>
+    <servlet-name>hello</servlet-name>
+  </filter-mapping>
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -28,6 +38,5 @@
     <servlet-name>hello</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
-
 
 </web-app>
