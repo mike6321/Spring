@@ -39,9 +39,5 @@
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> parent of 1240923... 스프링mvc구현(dispatcherServlet구현)
 </web-app>
