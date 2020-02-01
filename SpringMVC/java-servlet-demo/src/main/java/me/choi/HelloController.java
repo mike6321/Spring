@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class HelloController {
@@ -12,7 +11,7 @@ public class HelloController {
     @Autowired
     HelloService helloService;
 
-    @GetMapping("/hello/{id}")
+    @GetMapping("/hello")
     @ResponseBody
     public String hello() {
         return "hello, "+helloService.getName();
