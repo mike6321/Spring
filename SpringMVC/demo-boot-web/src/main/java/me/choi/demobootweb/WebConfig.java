@@ -30,7 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
     // http 메세지 컨버터 설정
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.
+
     }
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
