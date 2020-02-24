@@ -10,7 +10,7 @@ import java.util.List;
  * Date : 2020/02/24
  * Time : 5:59 오후
  */
-public class BookService {
+public abstract class BookService {
     List<Book> bookList = new ArrayList<>();
 
     public void add (Book book) {
@@ -25,4 +25,6 @@ public class BookService {
 
         return null;
     }
+
+    abstract protected void getConnection();
 }
