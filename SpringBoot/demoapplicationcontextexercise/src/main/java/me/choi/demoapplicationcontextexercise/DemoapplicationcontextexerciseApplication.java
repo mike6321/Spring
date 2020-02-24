@@ -3,8 +3,9 @@ package me.choi.demoapplicationcontextexercise;
 public class DemoapplicationcontextexerciseApplication {
 
     public static void main(String[] args) {
-        BookService bookService = new BBookService(new AConnectionMaker());
-
+//        BookService bookService = new BBookService(new AConnectionMaker());
+        BookFactory bookFactory = new BookFactory();
+        BookService bookService = bookFactory.bookService();
 
         Book book = new Book();
         book.setId("toby");

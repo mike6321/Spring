@@ -10,9 +10,9 @@ import java.util.List;
  * Date : 2020/02/24
  * Time : 5:59 오후
  */
-public abstract class BookService {
+public class BookService {
 
-//    private SimpleConnectionMaker simpleConnectionMaker;
+    private SimpleConnectionMaker simpleConnectionMaker;
 
     public BookService(SimpleConnectionMaker simpleConnectionMaker) {
         simpleConnectionMaker.getConnection();
