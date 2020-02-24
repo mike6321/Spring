@@ -8,10 +8,20 @@ package me.choi.demoapplicationcontextexercise;
  * Time : 7:34 오후
  */
 public class BookFactory {
-    public BookService bookService() {
-        SimpleConnectionMaker connectionMaker = new AConnectionMaker();
-        BookService bookService = new BookService(connectionMaker);
 
-        return bookService;
+    public BookService bookService() {
+        return new BookService(connectionMaker());
+    }
+
+    public AccountService accountService() {
+        return new AccountService(connectionMaker());
+    }
+
+    public MessageService messageService() {
+        return new MessageService(connectionMaker());
+    }
+
+    private AConnectionMaker connectionMaker() {
+        return new AConnectionMaker();
     }
 }
