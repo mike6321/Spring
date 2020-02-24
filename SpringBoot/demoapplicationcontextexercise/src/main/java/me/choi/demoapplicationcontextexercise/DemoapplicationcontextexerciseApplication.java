@@ -3,7 +3,7 @@ package me.choi.demoapplicationcontextexercise;
 public class DemoapplicationcontextexerciseApplication {
 
     public static void main(String[] args) {
-        BookService bookService = new BBookService();
+        BookService bookService = new BBookService(new AConnectionMaker());
 
 
         Book book = new Book();

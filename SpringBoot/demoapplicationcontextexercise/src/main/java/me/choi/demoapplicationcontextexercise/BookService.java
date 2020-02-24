@@ -12,22 +12,21 @@ import java.util.List;
  */
 public abstract class BookService {
 
-    private SimpleConnectionMaker simpleConnectionMaker;
+//    private SimpleConnectionMaker simpleConnectionMaker;
 
-    public BookService() {
-        simpleConnectionMaker = new SimpleConnectionMaker();
+    public BookService(SimpleConnectionMaker simpleConnectionMaker) {
+        simpleConnectionMaker.getConnection();
+        simpleConnectionMaker = new BConnectionMaker();
     }
 
     List<Book> bookList = new ArrayList<>();
 
     public void add (Book book) {
-        simpleConnectionMaker.getConnection();
 
         bookList.add(book);
     }
 
     public Book get(String id) {
-        simpleConnectionMaker.getConnection();
 
         for (Book book : bookList) {
             if (book.getId().equals(id))

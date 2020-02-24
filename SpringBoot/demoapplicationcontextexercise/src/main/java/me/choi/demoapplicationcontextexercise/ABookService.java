@@ -9,4 +9,7 @@ package me.choi.demoapplicationcontextexercise;
  */
 public class ABookService extends BookService{
 
+    public ABookService(SimpleConnectionMaker simpleConnectionMaker) {
+        super(simpleConnectionMaker);
+    }
 }

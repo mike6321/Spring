@@ -7,9 +7,7 @@ package me.choi.demoapplicationcontextexercise;
  * Date : 2020/02/24
  * Time : 6:53 오후
  */
-public class SimpleConnectionMaker {
+public interface SimpleConnectionMaker {
 
-    public void getConnection() {
-        System.out.println("connection Complete!");
-    }
+    public void getConnection();
 }
