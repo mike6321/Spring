@@ -1,13 +1,24 @@
 package me.choi.demoapplicationcontextexercise;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class DemoapplicationcontextexerciseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoapplicationcontextexerciseApplication.class, args);
+        BookService bookService = new BookService();
+
+
+        Book book = new Book();
+        book.setId("toby");
+        book.setName("토비의 스프링");
+        book.setBarCode(1);
+
+        bookService.add(book);
+
+        System.out.println(book.getId()+ " 등록성공");
+
+        Book book1 = bookService.get(book.getId());
+        System.out.println(book1.getId()+ " 조회성공");
+        System.out.println(book1.toString());
+
     }
 
 }
