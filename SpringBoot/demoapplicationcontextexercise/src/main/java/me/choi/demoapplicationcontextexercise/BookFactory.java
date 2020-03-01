@@ -3,6 +3,7 @@ package me.choi.demoapplicationcontextexercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
 /**
  * Project : demoapplicationcontextexercise
@@ -14,8 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BookFactory {
 
-    @Autowired
-    private BookService bookService;
 
     @Bean
     public BookService bookService() {
