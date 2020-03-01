@@ -1,5 +1,7 @@
 package me.choi.demoapplicationcontextexercise;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import java.util.List;
  * Date : 2020/02/24
  * Time : 5:59 오후
  */
+@Service
 public class BookService {
 
     private SimpleConnectionMaker simpleConnectionMaker;

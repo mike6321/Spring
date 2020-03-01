@@ -5,7 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * Project : demoapplicationcontextexercise
- * Created by InteliJ IDE
+ * Created by  n,InteliJ IDE
  * Developer : junwoochoi
  * Date : 2020/02/24
  * Time : 8:13 오후
@@ -18,5 +18,5 @@ public class BookServiceTest {
         context.getBean("BookService", BookService.class);
 
 
-    }
-}
+
+    }}
