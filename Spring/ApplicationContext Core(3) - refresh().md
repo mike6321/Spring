@@ -1,3 +1,5 @@
+
+
 # Bean 동작원리 (3) - refresh()
 
 > 굉장히 장황할 것이다. 그냥 코드 분석이기에... 
@@ -101,11 +103,19 @@ String[] postProcessorNames =
       beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 ```
 
-![image](https://user-images.githubusercontent.com/33277588/75793864-51230480-5db3-11ea-9e48-5fa4c6eb1111.png)
+BeanDefinitionRegistryPostProcessor 클래스를 아규먼트로 전송한다.
+
+![image](https://user-images.githubusercontent.com/33277588/75898147-053c9200-5e7d-11ea-8ad6-9a4125493a0f.png)
+
+
 
 결론적으로 internalConfigurationAnnotaionProcessor를 가지고온다.
 
+![image](https://user-images.githubusercontent.com/33277588/75793864-51230480-5db3-11ea-9e48-5fa4c6eb1111.png)
 
+------
+
+### 해당 결과를 가져오는 과정을 살펴보자
 
 BeanDefinitionRegistryPostProcessor 클래스에 대한 정보를 중심으로 처리한다.
 
@@ -117,7 +127,37 @@ BeanDefinitionRegistryPostProcessor 클래스에 대한 정보를 중심으로 �
 
 ![image](https://user-images.githubusercontent.com/33277588/75794276-e58d6700-5db3-11ea-9dda-48616439a113.png)
 
-위의 bean들을 루프를 돌면 factoryBean인지에 대한 여부 체크
+### 위의 bean들을 루프를 돌면서 factoryBean인지에 대한 여부 체크
+
+
+
+#### RootBeanDefinition의 초기화
+
+RootBeanDefinition의 객체를 생성하고 해당 객체에 singleton임을 set 한다.
+
+```java
+private final Map<String, RootBeanDefinition> mergedBeanDefinitions = new ConcurrentHashMap<>(256);
+```
+
+그리고 이전에 저장하였던 bean에 대한 이름과 RootBeanDefinition의 정보를 put한다.
+
+
+
+#### 팩토리 빈에 대한 검증 (AbstractFactory에서 진행)
+
+
+
+타입체킹은 AbstractAutowireCapableBeanFactory에서 이루어진다. - predictBeanType
+
+
+
+AbstractBeanDefinition에 저장되어있는 ConfigurationClassPostProcessor를 가지고 온다.
+
+![image](https://user-images.githubusercontent.com/33277588/75900155-d5db5480-5e7f-11ea-93d7-258e847c3d8f.png)
+
+FactoryBean와 ConfigurationClassPostProcessor 비교하여 팩토리 빈임을 결정하는데 아쉽게도 아니다.
+
+### 
 
 > **factoryBean**
 >
@@ -135,17 +175,17 @@ FactoryBean.class.isAssignableFrom(beanType)
 
 
 
+```java
+return typeToMatch.isAssignableFrom(predictedType);
+```
 
 
 
+**ConfigurationClassPostProcessor**와 **BeanDefinitionRegistryPostProcessor**를 비교하여 할당가능한지를 체크한다.
 
+가능하다면 true를 리턴하여 리스트에 저장한다.
 
-
-
-
-
-
-
+결과적으로 internalConfigurationAnnotaionProcessor만이 저장된다.
 
 
 
