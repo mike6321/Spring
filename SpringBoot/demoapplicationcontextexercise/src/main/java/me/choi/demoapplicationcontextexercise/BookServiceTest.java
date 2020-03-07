@@ -19,6 +19,7 @@ public class BookServiceTest {
 
         BookService bookService = context.getBean("bookService", BookService.class);
 
+
         Book book = new Book();
         book.setId("junwoobook");
         book.setName("junwoo");
