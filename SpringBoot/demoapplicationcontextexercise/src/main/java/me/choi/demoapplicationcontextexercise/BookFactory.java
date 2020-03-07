@@ -22,6 +22,8 @@ public class BookFactory {
     }
     @Bean
     public AccountService accountService() {
+
+
         return new AccountService(connectionMaker());
     }
     @Bean
