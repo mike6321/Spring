@@ -3,6 +3,7 @@ package me.choi.demoapplicationcontextexercise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,21 +16,20 @@ import org.springframework.stereotype.Repository;
 @Configuration
 public class BookFactory {
 
-
     @Bean
     public BookService bookService() {
         return new BookService(connectionMaker());
     }
+
     @Bean
     public AccountService accountService() {
-
-
         return new AccountService(connectionMaker());
     }
     @Bean
     public MessageService messageService() {
         return new MessageService(connectionMaker());
     }
+
     @Bean
     public AConnectionMaker connectionMaker() {
         return new AConnectionMaker();

@@ -16,12 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class BookServiceTest {
 
-    @Autowired
-    AutoService autoService;
 
-    @Test
-    void di_Test() {
-        assertNotNull(autoService);
-    }
+
 
 }

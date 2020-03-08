@@ -17,14 +17,14 @@ import java.util.List;
 
 public class BookService {
 
-    @Autowired
-    AutoService autoService;
-
     private SimpleConnectionMaker simpleConnectionMaker;
 
     public BookService(SimpleConnectionMaker simpleConnectionMaker) {
         simpleConnectionMaker.getConnection();
         simpleConnectionMaker = new BConnectionMaker();
+    }
+    public BookService() {
+
     }
 
     List<Book> bookList = new ArrayList<>();
