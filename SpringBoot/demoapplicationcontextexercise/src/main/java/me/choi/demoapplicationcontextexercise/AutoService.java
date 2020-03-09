@@ -2,9 +2,11 @@ package me.choi.demoapplicationcontextexercise;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 /**
  * Project : demoapplicationcontextexercise
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Service;
  * Date : 2020/03/08
  * Time : 1:55 오전
  */
-@Component
+@ComponentScan
 public class AutoService {
 
     @Bean
@@ -23,6 +25,7 @@ public class AutoService {
 
     @Bean
     AutoRepository autoRepository() {
+
         return new AutoRepository();
     }
 

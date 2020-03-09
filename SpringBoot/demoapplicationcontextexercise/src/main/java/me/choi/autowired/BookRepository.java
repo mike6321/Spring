@@ -1,6 +1,7 @@
 package me.choi.autowired;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * Project : demoapplicationcontextexercise
@@ -9,5 +10,6 @@ import org.springframework.stereotype.Repository;
  * Date : 2020/03/08
  * Time : 9:41 오후
  */
+@Repository
 public class BookRepository {
 }

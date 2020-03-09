@@ -3,6 +3,8 @@ package me.choi.autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Project : demoapplicationcontextexercise
  * Created by InteliJ IDE
@@ -13,11 +15,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
+    @Autowired
     BookRepository bookRepository;
 
-    @Autowired
-    public void setBookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public void printBookRepository() {
+        System.out.println("********************************************************");
+        System.out.println(bookRepository.getClass());
+        System.out.println("********************************************************");
+    }
+
+    @PostConstruct
+    public void setUp() {
+        System.out.println("********************************************************");
+        System.out.println(bookRepository.getClass());
+        System.out.println("********************************************************");
     }
 
 }

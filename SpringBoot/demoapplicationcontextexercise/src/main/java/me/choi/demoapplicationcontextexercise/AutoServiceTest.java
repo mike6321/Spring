@@ -2,6 +2,7 @@ package me.choi.demoapplicationcontextexercise;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.util.Assert;
 
 /**
  * Project : demoapplicationcontextexercise
@@ -25,7 +26,11 @@ public class AutoServiceTest {
 
         applicationContext2.getBean("bookService", BookService.class);
         AutoRepository autoRepository = applicationContext2.getBean("autoRepository", AutoRepository.class);
+        AutoRepository autoRepository2 = applicationContext2.getBean("autoRepository", AutoRepository.class);
         autoRepository.test();
+
+        System.out.println(autoRepository);
+        System.out.println(autoRepository2);
 
 
     }
