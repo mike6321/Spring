@@ -1,0 +1,44 @@
+package me.choi.restapi.events;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * Project : rest-api
+ * Created by InteliJ IDE
+ * Developer : junwoochoi
+ * Date : 2020/03/14
+ * Time : 10:14 오후
+ */
+public class EventTest {
+
+    @Test
+    public void builder() {
+        Event event = Event.builder()
+                .name("Inflearn Spring REST API")
+                .description("Inflearn Spring REST API")
+                .build();
+
+        assertThat(event).isNotNull();
+    }
+
+    @Test
+    public void javaBean() {
+        //Given
+        String name = "Event";
+        String spring = "Spring";
+
+        //When
+        Event event = new Event();
+        event.setName(name);
+        event.setDescription("Spring");
+
+        //Then
+        assertThat(event.getName()).isEqualTo(name);
+        assertThat(event.getDescription()).isEqualTo(spring);
+
+
+    }
+
+}
