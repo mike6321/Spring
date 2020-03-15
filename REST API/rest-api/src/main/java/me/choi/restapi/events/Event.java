@@ -32,6 +32,6 @@ public class Event {
     private boolean offline;
     private boolean free;
     @Enumerated(EnumType.STRING)
-    private EventStaus eventStaus;
+    private EventStaus eventStaus = EventStaus.DRAFT;
 
 }

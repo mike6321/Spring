@@ -76,5 +76,37 @@ public class EventControllerTests {
                 .andExpect(jsonPath("eventStaus").value(Matchers.not(EventStaus.PUBLISHED)));
     }
 
+    @Test
+    public void badRequest() throws Exception {
+
+        Event event = Event.builder()
+                .id(100)
+                .name("Spring")
+                .description("REST API Development with Spring")
+                .beginEnrollmentDateTime(LocalDateTime.of(2020,3,15,2,28,55,2))
+                .closeEnrollmentDateTime(LocalDateTime.of(2020,3,16,2,28,55,2))
+                .endEventDateTime(LocalDateTime.of(2020,3,17,2,28,55,2))
+                .basePrice(100)
+                .maxPrice(200)
+                .limitOfEnrollment(100)
+                .location("강남역 D2 스타트업 팩토리")
+                .free(true)
+                .offline(false)
+                .eventStaus(EventStaus.PUBLISHED)
+                .build();
+
+        // TODO: [createEvent] junwoochoi 2020/03/15 3:55 오후
+        mockMvc.perform(post("/api/events/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaTypes.HAL_JSON)
+                .content(objectMapper.writeValueAsString(event)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+        // TODO: [badRequest] junwoochoi 2020/03/15 4:36 오후
+        // 받을 수 없는 프로퍼티를 넘길 경우 BadRequest 처리를 한다.
+        //  이를 위해서 application properties에서 설정을 한다.
+
+    }
 
 }
