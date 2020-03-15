@@ -2,6 +2,7 @@ package me.choi.restapi.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class EventControllerTests {
 //    EventRepository eventRepository;
 
     @Test
+    @DisplayName("정상적으로 이벤트를 생성하는 테스트")
     public void createEvent() throws Exception {
 
         Event event = Event.builder()
@@ -77,6 +79,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @DisplayName("입력받을 수 없는 값을 사용하는 경우에 에러가 발생하는 이벤트를 생성하는 테스트")
     public void badRequest() throws Exception {
 
         Event event = Event.builder()
@@ -108,5 +111,48 @@ public class EventControllerTests {
         //  이를 위해서 application properties에서 설정을 한다.
 
     }
+
+    @Test
+    @DisplayName("입력값이 비어있는경우에 에러가 발생하는 이벤트를 생성하는 테스트")
+    public void createEvent_Bad_Request_Empty_Input() throws Exception {
+        EventDto eventDto = EventDto.builder().build();
+
+        this.mockMvc.perform(post("/api/events")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(this.objectMapper.writeValueAsString(eventDto))
+                    )
+                    .andExpect(status().isBadRequest());
+    }
+    @Test
+    @DisplayName("입력값이 잘못된 경우에 에러가 발생하는 이벤트를 생성하는 테스트")
+    public void createEvent_Bad_Request_Wrong_Input() throws Exception {
+
+        // TODO: [createEvent_Bad_Request_Wrong_Input] junwoochoi 2020/03/15 4:53 오후
+        // 이벤트 시작하는 날짜보다 종료하는 날짜가 빠르게끔 설정 , basePrice가 맥스 값 보다 크게 설
+       EventDto eventDto = EventDto.builder()
+                                    .name("Spring")
+                                    .description("REST API Development with Spring")
+                                    .beginEnrollmentDateTime(LocalDateTime.of(2020,3,26,2,28,55,2))
+                                    .closeEnrollmentDateTime(LocalDateTime.of(2020,3,25,2,28,55,2))
+                                    .beginEventDateTime(LocalDateTime.of(2020,3,24,2,28,55,2))
+                                    .endEventDateTime(LocalDateTime.of(2020,3,23,2,28,55,2))
+                                    .basePrice(10000)
+                                    .maxPrice(200)
+                                    .limitOfEnrollment(100)
+                                    .location("강남역 D2 스타트업 팩토리")
+                                    .build();
+
+
+        this.mockMvc.perform(post("/api/events")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(this.objectMapper.writeValueAsString(eventDto))
+                    )
+                    .andDo(print())
+                    .andExpect(status().isBadRequest());
+    }
+
+
+
+
 
 }
