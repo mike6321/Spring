@@ -1,12 +1,10 @@
-package me.choi.componentversusconfiguration;
+package me.choi.component_versus_configuration;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.stereotype.Component;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by InteliJ IDE
  * Developer : junwoochoi
  * Date : 2020/03/17
- * Time : 10:27 오후
+ * Time : 10:32 오후
  */
 @SpringBootTest
+class ComponentTest {
 
-class ConfigurationTest {
     @Autowired
     SimpleBeanConsumer simpleBeanConsumer;
 
@@ -28,7 +26,7 @@ class ConfigurationTest {
         assertNotNull(simpleBeanConsumer);
     }
 
-    @Configuration
+    @Component
     public static class Config {
         @Bean
         public SimpleBean simpleBean() {
@@ -40,4 +38,5 @@ class ConfigurationTest {
             return new SimpleBeanConsumer(simpleBean());
         }
     }
+
 }

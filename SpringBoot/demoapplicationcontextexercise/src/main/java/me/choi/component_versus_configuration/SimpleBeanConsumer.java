@@ -1,4 +1,4 @@
-package me.choi.componentversusconfiguration;
+package me.choi.component_versus_configuration;
 
 /**
  * Project : demoapplicationcontextexercise

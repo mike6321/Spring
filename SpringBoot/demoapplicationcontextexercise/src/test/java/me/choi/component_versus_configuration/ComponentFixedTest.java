@@ -1,4 +1,4 @@
-package me.choi.componentversusconfiguration;
+package me.choi.component_versus_configuration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

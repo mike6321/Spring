@@ -1,4 +1,4 @@
-package me.choi.componentversusconfiguration;
+package me.choi.component_versus_configuration;
 
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
