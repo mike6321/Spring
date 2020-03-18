@@ -16,6 +16,9 @@ import org.springframework.stereotype.Repository;
 @Configuration
 public class BookFactory {
 
+//    @Autowired
+//    BookService bookService;
+
     @Bean
     public BookService bookService() {
         return new BookService(connectionMaker());
@@ -34,4 +37,6 @@ public class BookFactory {
     public AConnectionMaker connectionMaker() {
         return new AConnectionMaker();
     }
+
+
 }
