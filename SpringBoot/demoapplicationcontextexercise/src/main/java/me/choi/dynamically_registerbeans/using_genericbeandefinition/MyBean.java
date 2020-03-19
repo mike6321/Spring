@@ -1,4 +1,4 @@
-package me.choi.using_genericbeandefinition;
+package me.choi.dynamically_registerbeans.using_genericbeandefinition;
 
 import java.util.Date;
 
