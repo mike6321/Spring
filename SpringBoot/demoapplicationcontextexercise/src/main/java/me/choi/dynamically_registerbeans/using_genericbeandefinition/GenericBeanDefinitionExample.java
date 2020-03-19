@@ -14,6 +14,7 @@ public class GenericBeanDefinitionExample {
         GenericBeanDefinition gbd = new GenericBeanDefinition();
         gbd.setBeanClass(MyBean.class);
 
+
         MutablePropertyValues mpv = new MutablePropertyValues();
         mpv.add("date", new Date());
 
