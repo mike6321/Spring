@@ -24,7 +24,7 @@ public class UserRegistrationBeanImpl implements UserRegistrationBean {
 
     private UserInfo userInfo;
 
-    @PostConstruct
+//    @PostConstruct
     private void initialize () {
         System.out.println("initializing: " + System.identityHashCode(this));
     }

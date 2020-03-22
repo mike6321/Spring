@@ -19,17 +19,19 @@ import org.springframework.context.annotation.Scope;
  */
 @Configuration
 public class Config {
-
+    /*Singleton Bean 등록*/
     @Bean
     public UserRegistrationValidator validator() {
         return new UserRegistrationValidator();
     }
 
+    /*Singleton Bean 등록*/
     @Bean
     public RegistrationService registrationService() {
         return new RegistrationServiceImpl();
     }
 
+    /*Prototype Bean 등록*/
     @Scope(ConfigurableListableBeanFactory.SCOPE_PROTOTYPE)
     @Bean
     public UserRegistrationBean userRegistrationBean() {

@@ -16,16 +16,17 @@ public class BookServiceTest {
 
     ApplicationContext context = new
             AnnotationConfigApplicationContext(BookFactory.class);
+        BookService bean = context.getBean(BookService.class);
+        //BookService bookService = context.getBean("bookService", BookService.class);
 
-        BookService bookService = context.getBean("bookService", BookService.class);
 
 
-        Book book = new Book();
-        book.setId("junwoobook");
-        book.setName("junwoo");
+        //Book book = new Book();
+        //book.setId("junwoobook");
+        //book.setName("junwoo");
 
-        bookService.add(book);
-        System.out.println(bookService.get("junwoobook"));
+        //bookService.add(book);
+        //System.out.println(bookService.get("junwoobook"));
     }
 }
 

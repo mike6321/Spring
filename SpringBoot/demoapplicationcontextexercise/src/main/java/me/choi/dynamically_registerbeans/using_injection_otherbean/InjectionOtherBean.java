@@ -37,8 +37,5 @@ public class InjectionOtherBean {
 
         MyBean bean = context.getBean(MyBean.class);
         bean.doSomething();
-
-        OtherBean bean1 = context.getBean(OtherBean.class);
-        bean1.doSomething();
     }
 }

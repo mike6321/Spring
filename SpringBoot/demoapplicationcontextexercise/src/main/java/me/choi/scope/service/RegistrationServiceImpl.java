@@ -13,7 +13,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     //Ideally we should be injecting some DAO here
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         System.out.println("initializing: " + System.identityHashCode(this));
     }

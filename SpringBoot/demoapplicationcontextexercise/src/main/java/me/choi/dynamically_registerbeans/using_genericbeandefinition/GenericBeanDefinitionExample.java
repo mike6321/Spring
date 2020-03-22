@@ -19,17 +19,11 @@ public class GenericBeanDefinitionExample {
         mpv.add("date", new Date());
 
         gbd.setPropertyValues(mpv);
-
         context.registerBeanDefinition("myBeanName", gbd);
 
-        MyBean bean = context.getBean(MyBean.class);
+        //MyBean bean = context.getBean(MyBean.class);
+        MyBean bean = context.getBean("myBeanName",MyBean.class);
         bean.doSomething();
-        MyBean bean2 = context.getBean(MyBean.class);
-
-        System.out.println(bean);
-        System.out.println(bean2);
-
-        Assert.isTrue(bean == bean2,"is equals");
 
     }
 }
