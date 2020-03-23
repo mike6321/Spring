@@ -1,6 +1,6 @@
 package me.aop.config;
 
-import me.aop.service.UserService;
+import me.aop.service.UserServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -15,7 +15,7 @@ public class MyApp {
         AnnotationConfigApplicationContext context =
                                     new AnnotationConfigApplicationContext(MyConfig.class);
 
-        UserService userService = context.getBean(UserService.class);
+        UserServiceImpl userService = context.getBean(UserServiceImpl.class);
         userService.upgradeLevels();
     }
 }

@@ -11,12 +11,15 @@ import java.util.List;
  * Date : 2020/03/23
  * Time : 9:36 오후
  */
-public class UserDao {
+public interface UserDao {
 
-    private List<User> userList;
+    public void add(User user);
 
+    public User get(String id);
 
-    public List<User> getAll() {
-        return userList;
-    }
+    public void deleteAll();
+
+    public List<User> getAll();
+
+    void update(User user);
 }
