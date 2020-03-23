@@ -1,4 +1,4 @@
-package me.designpattern;
+package me.designpattern.strategypattern;
 
 /**
  * Project : demoapplicationcontextexercise
