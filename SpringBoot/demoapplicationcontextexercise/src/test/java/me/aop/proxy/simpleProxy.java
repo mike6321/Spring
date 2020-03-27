@@ -20,4 +20,10 @@ class simpleProxy {
         assertThat(hello.sayHello("Toby"), is("Hello Toby"));
     }
 
+    @Test
+    public void simpleProxy2() {
+        Hello proxyHello = new HelloUppercase(new HelloTarget());
+        assertThat(proxyHello.sayHello("Toby"), is("HELLO TOBY"));
+    }
+
 }
