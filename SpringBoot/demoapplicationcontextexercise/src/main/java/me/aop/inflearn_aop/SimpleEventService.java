@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class SimpleEventService implements EventService {
     @Override
     public void createEvent() {
-        long start = System.currentTimeMillis();
 
         try {
             Thread.sleep(1000);
@@ -22,12 +21,10 @@ public class SimpleEventService implements EventService {
         }
 
         System.out.println("Create an Event");
-        System.out.println(System.currentTimeMillis() - start);
     }
 
     @Override
     public void publishEvent() {
-        long start = System.currentTimeMillis();
 
         try {
             Thread.sleep(2000);
@@ -36,7 +33,6 @@ public class SimpleEventService implements EventService {
         }
 
         System.out.println("Published an Event");
-        System.out.println(System.currentTimeMillis() - start);
     }
 
     @Override
