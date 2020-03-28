@@ -8,11 +8,16 @@ import org.springframework.stereotype.Service;
  * Created by InteliJ IDE
  * Developer : junwoochoi
  * Date : 2020/03/28
- * Time : 8:34 오후
+ * Time : 8:40 오후
  */
-public interface BookService {
 
-    public void rent(Book book);
+public class BookService {
 
-    public void returnBook(Book book);
+    public void rent(Book book) {
+        System.out.println("rent :: "+book.getTitle());
+    }
+
+    public void returnBook(Book book) {
+        System.out.println("return :: "+ book.getTitle());
+    }
 }

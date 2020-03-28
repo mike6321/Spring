@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -21,33 +24,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookServiceTest {
 
-//    BookService bookService = new BookServiceProxy(new RealSubjectDefaultBookService());
-    BookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(),
-        new Class[]{BookService.class},
-        new InvocationHandler() {
-            BookService bookService = new RealSubjectDefaultBookService();
-
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                if (method.getName().equals("rent")) {
-                    System.out.println("##################################");
-                    Object invoke = method.invoke(bookService, args);
-                    System.out.println("##################################");
-
-                    return invoke;
-                }
-
-
-                return method.invoke(bookService, args);
-            }
-        });
 
     @Test
     public void di() {
+        MethodInterceptor handler = new MethodInterceptor() {
+            BookService bookService = new BookService();
+
+            @Override
+            public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+
+                if (method.getName().equals("rent")) {
+                    System.out.println("************************************");
+                    Object invoke = method.invoke(bookService, args);
+                    System.out.println("************************************");
+                    return invoke;
+                }
+                return method.invoke(bookService, args);
+            }
+        };
+
+
+        BookService bookservice = (BookService)Enhancer.create(BookService.class, handler);
+
+
         Book book = new Book();
         book.setTitle("spring");
-        bookService.rent(book);
 
-        bookService.returnBook(book);
+        bookservice.rent(book);
+        bookservice.returnBook(book);
     }
 }
