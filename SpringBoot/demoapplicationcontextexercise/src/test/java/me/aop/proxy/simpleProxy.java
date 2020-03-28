@@ -2,6 +2,8 @@ package me.aop.proxy;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Proxy;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -14,16 +16,18 @@ import static org.hamcrest.Matchers.is;
  * Time : 3:49 오후
  */
 class simpleProxy {
-    @Test
-    public void simpleProxy() {
-        Hello hello = new HelloTarget();
-        assertThat(hello.sayHello("Toby"), is("Hello Toby"));
-    }
 
     @Test
-    public void simpleProxy2() {
-        Hello proxyHello = new HelloUppercase(new HelloTarget());
-        assertThat(proxyHello.sayHello("Toby"), is("HELLO TOBY"));
+    public void simpleProxy3() {
+        Hello proxyInstance = (Hello) Proxy.newProxyInstance(getClass().getClassLoader(),
+                new Class[]{Hello.class},
+                new UppercaseHandler(new HelloTarget()));
+        String hello = proxyInstance.sayThankYou("Hello");
+        System.out.println(hello);
     }
+
+
+
+
 
 }
