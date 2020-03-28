@@ -13,21 +13,34 @@ import org.springframework.stereotype.Service;
 public class SimpleEventService implements EventService {
     @Override
     public void createEvent() {
+        long start = System.currentTimeMillis();
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         System.out.println("Create an Event");
+        System.out.println(System.currentTimeMillis() - start);
     }
 
     @Override
     public void publishEvent() {
+        long start = System.currentTimeMillis();
+
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         System.out.println("Published an Event");
+        System.out.println(System.currentTimeMillis() - start);
+    }
+
+    @Override
+    public void deleteEvent() {
+        System.out.println("Delete an Event");
     }
 }
