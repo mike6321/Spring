@@ -25,4 +25,9 @@ public class BookServiceProxy implements BookService{
         bookService.rent(book);
         System.out.println("**************************");
     }
+
+    @Override
+    public void returnBook(Book book) {
+
+    }
 }

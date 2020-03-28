@@ -13,4 +13,6 @@ import org.springframework.stereotype.Service;
 public interface BookService {
 
     public void rent(Book book);
+
+    public void returnBook(Book book);
 }
