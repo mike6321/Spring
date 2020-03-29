@@ -24,6 +24,7 @@ class simpleProxy {
                 new UppercaseHandler(new HelloTarget()));
         String hello = proxyInstance.sayThankYou("Hello");
         System.out.println(hello);
+
     }
 
 
