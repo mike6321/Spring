@@ -1,0 +1,19 @@
+package me.choi.springcore.spring_inheritence;
+
+
+
+/**
+ * Project : spring-core
+ * Created by InteliJ IDE
+ * Developer : junwoochoi
+ * Date : 2020/03/31
+ * Time : 9:09 오후
+ */
+public class AnnotationConfigApplicationContext extends GenericApplicationContext {
+    public AnnotationConfigApplicationContext() {
+    }
+
+    public AnnotationConfigApplicationContext(Class<?>... tClass) {
+        this();
+    }
+}
