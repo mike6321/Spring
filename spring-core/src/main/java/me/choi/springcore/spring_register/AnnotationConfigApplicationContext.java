@@ -17,12 +17,11 @@ public class AnnotationConfigApplicationContext {
 
     //private final AnnotatedBeanDefinitionReader reader;
     
-    AnnotationConfigApplicationContext(Class<?> componentClasses) {
-        register(componentClasses);
-    }
+//    AnnotationConfigApplicationContext(Class<?> componentClasses) {
+//        register(componentClasses);
+//    }
 
-    private void register(Class<?> componentClasses) {
-        Assert.notEmpty(Collections.singleton(componentClasses), "123");
+
 
 
 }
