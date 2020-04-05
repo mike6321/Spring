@@ -34,4 +34,8 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventStaus eventStaus = EventStaus.DRAFT;
 
+    public void update() {
+
+        this.free = this.basePrice == 0 && this.maxPrice == 0;
+    }
 }

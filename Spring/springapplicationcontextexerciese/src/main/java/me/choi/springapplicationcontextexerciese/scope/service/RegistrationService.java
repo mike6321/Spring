@@ -7,5 +7,7 @@ package me.choi.springapplicationcontextexerciese.scope.service;
  * Date : 2020/03/22
  * Time : 12:06 오후
  */
-public class RegistrationService {
+public interface RegistrationService {
+
+    void register(UserInfo userInfo);
 }

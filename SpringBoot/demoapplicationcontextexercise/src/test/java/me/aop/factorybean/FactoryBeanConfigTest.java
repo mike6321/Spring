@@ -3,11 +3,13 @@ package me.aop.factorybean;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.annotation.Resource;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,12 +26,18 @@ class FactoryBeanConfigTest {
     @Autowired
     private Message message;
 
+    @Autowired
+    ApplicationContext context;
+
     @Resource(name = "&message")
     private MessageFactoryBean messageFactoryBean;
 
     @Test
     public void testConstructWorkerByJava() {
-        assertEquals(message.getText(), "text");
+        Object message = context.getBean("message");
+        assertEquals(message, is(Message.class));
+
+        assertEquals(this.message.getText(), "text");
     }
 
 }

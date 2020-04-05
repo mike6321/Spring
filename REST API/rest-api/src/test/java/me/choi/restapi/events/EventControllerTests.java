@@ -47,19 +47,16 @@ public class EventControllerTests {
     public void createEvent() throws Exception {
 
         Event event = Event.builder()
-                            .id(100)
                             .name("Spring")
                             .description("REST API Development with Spring")
                             .beginEnrollmentDateTime(LocalDateTime.of(2020,3,15,2,28,55,2))
                             .closeEnrollmentDateTime(LocalDateTime.of(2020,3,16,2,28,55,2))
-                            .endEventDateTime(LocalDateTime.of(2020,3,17,2,28,55,2))
+                            .beginEventDateTime(LocalDateTime.of(2020,3,17,2,28,55,2))
+                            .endEventDateTime(LocalDateTime.of(2020,3,18,2,28,55,2))
                             .basePrice(100)
                             .maxPrice(200)
                             .limitOfEnrollment(100)
                             .location("강남역 D2 스타트업 팩토리")
-                            .free(true)
-                            .offline(false)
-                            .eventStaus(EventStaus.PUBLISHED)
                             .build();
 
         // TODO: [createEvent] junwoochoi 2020/03/15 3:55 오후
@@ -73,9 +70,9 @@ public class EventControllerTests {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").exists())
-                .andExpect(jsonPath("id").value(Matchers.not(100)))
-                .andExpect(jsonPath("free").value(Matchers.not(true)))
-                .andExpect(jsonPath("eventStaus").value(Matchers.not(EventStaus.PUBLISHED)));
+                .andExpect(jsonPath("free").value(Matchers.not(false)))
+                .andExpect(jsonPath("offline").value(Matchers.not(true)))
+                .andExpect(jsonPath("eventStaus").value(Matchers.not(EventStaus.DRAFT.name())));
     }
 
     @Test
