@@ -1,6 +1,7 @@
 package me.choi.before_makingbeaninstance;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.AliasFor;
 
 /**
  * Project : demoapplicationcontextexercise

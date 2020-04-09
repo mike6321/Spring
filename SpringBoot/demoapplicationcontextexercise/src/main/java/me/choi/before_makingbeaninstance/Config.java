@@ -1,8 +1,7 @@
 package me.choi.before_makingbeaninstance;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,5 +19,19 @@ public class Config {
     @Bean
     public MyBean myBean() {
         return new MyBean();
+    }
+
+
+
+    @Bean
+    @Lazy
+    public MyLazyBean myLazyBean() {
+        return new MyLazyBean();
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public MyPrototypeBean myPrototypeBean() {
+        return new MyPrototypeBean();
     }
 }
