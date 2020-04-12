@@ -3,6 +3,7 @@ package me.choi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 
 /**
  * Project : servlet-core
@@ -12,10 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * Time : 5:29 오후
  */
 @Configuration
-//@ComponentScan
+@ComponentScan(excludeFilters = @ComponentScan.Filter(Controller.class))
 public class AppConfig {
-    @Bean
-    public HelloService helloService() {
-        return new HelloService();
-    }
+
 }
