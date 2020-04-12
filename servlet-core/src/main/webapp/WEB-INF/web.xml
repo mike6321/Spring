@@ -5,6 +5,7 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!--  contextClass 매핑 부분 AppConfig (Controller 제외)-->
   <context-param>
     <param-name>contextClass</param-name>
     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
@@ -29,14 +30,34 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  
+
+
+<!--  DispatcherServlet 매핑 부분 WebConfig (Controller)-->
   <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>me.choi.HelloServlet</servlet-class>
+    <servlet-name>app</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>me.choi.WebConfig</param-value>
+    </init-param>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>app</servlet-name>
+    <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
+  
+<!--  <servlet>-->
+<!--    <servlet-name>hello</servlet-name>-->
+<!--    <servlet-class>me.choi.HelloServlet</servlet-class>-->
+<!--  </servlet>-->
+<!--  -->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>hello</servlet-name>-->
+<!--    <url-pattern>/hello</url-pattern>-->
+<!--  </servlet-mapping>-->
 </web-app>
