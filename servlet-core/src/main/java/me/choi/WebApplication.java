@@ -14,13 +14,12 @@ import javax.servlet.ServletException;
  * Date : 2020/04/18
  * Time : 7:23 오후
  */
+
 public class WebApplication {//implements WebApplicationInitializer {
 
     public void onStartup(ServletContext servletContext) throws ServletException {
-//        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-//        context.setServletContext(servletContext);
-//        context.register(WebConfig.class);
-//        context.refresh();
+
+//public class WebApplication implements WebApplicationInitializer {
 
     }
 }
