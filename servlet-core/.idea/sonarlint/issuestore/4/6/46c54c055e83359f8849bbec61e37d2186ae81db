@@ -1,0 +1,21 @@
+
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¨ÈÜŸıÿÿÿÿ
+l
+java:S1989"QHandle the following exception that could be thrown by "getBean": BeansException.(Á£¶Øşÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Àá——şÿÿÿÿ
+f
+java:S1989"PHandle the following exception that could be thrown by "getWriter": IOException.(ôƒæ
+f
+java:S1989 "PHandle the following exception that could be thrown by "getWriter": IOException.(ËÃ˜
+f
+java:S1989!"PHandle the following exception that could be thrown by "getWriter": IOException.( ôÕ´
+k
+java:S1989#"PHandle the following exception that could be thrown by "getWriter": IOException.(ÅŸÌåûÿÿÿÿ
+k
+java:S1989$"PHandle the following exception that could be thrown by "getWriter": IOException.(æ÷€üÿÿÿÿ
+f
+java:S1989%"PHandle the following exception that could be thrown by "getWriter": IOException.(³Ò¹
+k
+java:S1989&"PHandle the following exception that could be thrown by "getWriter": IOException.(õöœ‚şÿÿÿÿ
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(Û­â…úÿÿÿÿ
+V	java:S125""<This block of commented-out lines of code should be removed.(®˜¹üÿÿÿÿ
