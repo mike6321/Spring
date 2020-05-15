@@ -3,7 +3,6 @@ package me.choi.eatgo.application;
 import me.choi.eatgo.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class RestaurantService {
     MenuItemRepository menuItemRepository;
     
 
-    public RestaurantService(RestaurantRepository restaurantRepository, MenuItemRepositoryImpl menuItemRepository) {
+    public RestaurantService(RestaurantRepository restaurantRepository, MenuItemRepository menuItemRepository) {
         this.restaurantRepository = restaurantRepository;
         this.menuItemRepository = menuItemRepository;
     }
