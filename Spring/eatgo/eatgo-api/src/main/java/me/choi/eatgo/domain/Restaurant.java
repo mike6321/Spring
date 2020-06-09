@@ -11,11 +11,14 @@ public class Restaurant {
 
     private final String name;
     private final String address;
+    private final Long id;
 
-    public Restaurant(String name, String address) {
+    public Restaurant(Long id, String name, String address) {
+        this.id = id;
         this.address = address;
         this.name = name;
     }
+
 
     public String getAddress() {
         return address;
@@ -27,5 +30,9 @@ public class Restaurant {
 
     public String getInformation() {
         return name+ " in "+address;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
