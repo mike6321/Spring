@@ -1,5 +1,7 @@
 package me.choi.eatgo.interfaces;
 
+import me.choi.eatgo.domain.MenuItemRepository;
+import me.choi.eatgo.domain.MenuItemRepositoryImpl;
 import me.choi.eatgo.domain.RestaurantRepository;
 import me.choi.eatgo.domain.RestaurantRepositoryImpl;
 import org.junit.Test;
@@ -32,6 +34,9 @@ public class RestaurantControllerTest {
     @SpyBean(RestaurantRepositoryImpl.class)
     private RestaurantRepository restaurantRepository;
 
+    @SpyBean(MenuItemRepositoryImpl.class)
+    private MenuItemRepository menuItemRepository;
+
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurant"))
@@ -46,11 +51,14 @@ public class RestaurantControllerTest {
         mvc.perform(get("/restaurant/1004"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"id\":1004")))
-                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")));
+                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
+                .andExpect(content().string(containsString("Kimchi")))
+        ;
 
         mvc.perform(get("/restaurant/2020"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"id\":2020")))
-                .andExpect(content().string(containsString("\"name\":\"Cyber Food\"")));
+                .andExpect(content().string(containsString("\"name\":\"Cyber Food\"")))
+        ;
     }
 }
