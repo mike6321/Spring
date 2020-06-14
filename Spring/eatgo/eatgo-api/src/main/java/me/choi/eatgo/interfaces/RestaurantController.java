@@ -26,6 +26,7 @@ public class RestaurantController {
     @Autowired
     private MenuItemRepository menuItemRepository;
 
+
     @GetMapping("/restaurant")
     public List<Restaurant> list() {
         List<Restaurant> restaurants = repositoryRepository.findAll();
@@ -38,7 +39,6 @@ public class RestaurantController {
         Restaurant restaurant= repositoryRepository.findById(id);
         List<MenuItem> menuItems = menuItemRepository.findAllByRepositoryId(id);
         restaurant.setMenuItem(menuItems);
-        //restaurant.addMenuItem(new MenuItem("Kimchi"));
 
         return restaurant;
     }
