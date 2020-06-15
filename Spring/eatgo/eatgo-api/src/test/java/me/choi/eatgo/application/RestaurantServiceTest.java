@@ -3,11 +3,16 @@ package me.choi.eatgo.application;
 import me.choi.eatgo.domain.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
+
 /**
  * Project : eatgo
  *
@@ -15,17 +20,39 @@ import static org.junit.Assert.assertThat;
  * @comment :
  * Time : 8:45 오후
  */
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(RestaurantController.class)
 public class RestaurantServiceTest {
 
     private RestaurantService restaurantService;
 
+    @Mock
+    private RestaurantRepository restaurantRepository;
+    @Mock
     private MenuItemRepository menuItemRepository;
 
     @Before
     public void setUp() {
-        restaurantService = new RestaurantService(new RestaurantRepositoryImpl(), new MenuItemRepositoryImpl());
+        MockitoAnnotations.initMocks(this);
+
+        mockRestaurantRepository();
+        mockMenuItemRepository();
+
+
+        restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
+    }
+
+    private void mockMenuItemRepository() {
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItem("Kimchi"));
+        given(menuItemRepository.findAllByRepositoryId(1004L)).willReturn(menuItems);
+    }
+
+    private void mockRestaurantRepository() {
+        List<Restaurant> restaurants = new ArrayList<>();
+        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
+        restaurants.add(restaurant);
+        given(restaurantRepository.findAll()).willReturn(restaurants);
+
+        given(restaurantRepository.findById(1004L)).willReturn(restaurant);
     }
 
     @Test
@@ -44,20 +71,5 @@ public class RestaurantServiceTest {
         assertThat(restaurant.getId(),is(1004L));
 
     }
-
-
-
-//    @Autowired
-//    private MockMvc mvc;
-//
-//    @SpyBean(RestaurantRepositoryImpl.class)
-//    private RestaurantRepository restaurantRepository;
-
-//    @Test
-//    public void getRestaurantMvcTest() {
-//        mvc.perform(get("/restaurantService"))
-//                .andExpect(status().isOk())
-//                .andExpect()
-//    }
 
 }
