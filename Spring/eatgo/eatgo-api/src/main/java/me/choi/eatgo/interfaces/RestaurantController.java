@@ -1,5 +1,6 @@
 package me.choi.eatgo.interfaces;
 
+import me.choi.eatgo.application.RestaurantService;
 import me.choi.eatgo.domain.MenuItem;
 import me.choi.eatgo.domain.MenuItemRepository;
 import me.choi.eatgo.domain.Restaurant;
@@ -21,24 +22,29 @@ import java.util.List;
 @RestController
 public class RestaurantController {
 
+//    @Autowired
+//    private RestaurantRepository repositoryRepository;
+//    @Autowired
+//    private MenuItemRepository menuItemRepository;
     @Autowired
-    private RestaurantRepository repositoryRepository;
-    @Autowired
-    private MenuItemRepository menuItemRepository;
+    private RestaurantService restaurantService;
 
 
     @GetMapping("/restaurant")
     public List<Restaurant> list() {
-        List<Restaurant> restaurants = repositoryRepository.findAll();
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
 
         return restaurants;
     }
 
     @GetMapping("/restaurant/{id}")
     public Restaurant detail(@PathVariable("id") Long id) {
-        Restaurant restaurant= repositoryRepository.findById(id);
-        List<MenuItem> menuItems = menuItemRepository.findAllByRepositoryId(id);
-        restaurant.setMenuItem(menuItems);
+        //기본 정보 + 메뉴 정보
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+
+//        Restaurant restaurant= repositoryRepository.findById(id);
+//        List<MenuItem> menuItems = menuItemRepository.findAllByRepositoryId(id);
+//        restaurant.setMenuItem(menuItems);
 
         return restaurant;
     }

@@ -1,5 +1,6 @@
 package me.choi.eatgo.interfaces;
 
+import me.choi.eatgo.application.RestaurantService;
 import me.choi.eatgo.domain.MenuItemRepository;
 import me.choi.eatgo.domain.MenuItemRepositoryImpl;
 import me.choi.eatgo.domain.RestaurantRepository;
@@ -36,6 +37,9 @@ public class RestaurantControllerTest {
 
     @SpyBean(MenuItemRepositoryImpl.class)
     private MenuItemRepository menuItemRepository;
+
+    @SpyBean(RestaurantService.class)
+    private RestaurantService restaurantService;
 
     @Test
     public void list() throws Exception {
