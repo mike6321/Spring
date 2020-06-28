@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,10 +37,14 @@ public class EventControllerTests {
     @Autowired
     ObjectMapper objectMapper;
 
+    @MockBean
+    EventRepository eventRepository;
+
     @Test
     public void createEvent() throws Exception{
 
         Event event = Event.builder()
+                    .id(10)
                     .name("Spring")
                     .description("REST API Developmet with Spring")
                     .beginEnrollmentDateTime(LocalDateTime.of(2020,06,28,8,18))
@@ -51,6 +57,8 @@ public class EventControllerTests {
                     .location("강남역 D2 스타트업 팩토리")
                     .build()
                 ;
+
+        when(eventRepository.save(event)).thenReturn(event);
 
         mockMvc.perform(post("/api/events/")
                         //.contentType("\"id\":\"mike6321\"")
