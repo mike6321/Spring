@@ -1,5 +1,6 @@
 package me.choi.restapiwithtestcode.events;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -26,15 +30,39 @@ public class EventControllerTests {
 
     @Autowired
     MockMvc mockMvc;
+    //{"id":"mike6321"}
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Test
     public void createEvent() throws Exception{
+
+        Event event = Event.builder()
+                    .name("Spring")
+                    .description("REST API Developmet with Spring")
+                    .beginEnrollmentDateTime(LocalDateTime.of(2020,06,28,8,18))
+                    .closeEnrollmentDateTime(LocalDateTime.of(2020,06,29,8,18))
+                    .beginEventDateTime(LocalDateTime.of(2020,06,29,8,18))
+                    .endEventDateTime(LocalDateTime.of(2020,06,30,8,18))
+                    .basePrice(100)
+                    .maxPrice(200)
+                    .limitOfEnrollment(100)
+                    .location("강남역 D2 스타트업 팩토리")
+                    .build()
+                ;
+
         mockMvc.perform(post("/api/events/")
+                        //.contentType("\"id\":\"mike6321\"")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaTypes.HAL_JSON)
-                        )
+                        .content(objectMapper.writeValueAsString(event))  //json 문자열로 변형
+                        ) //요청본문
                         .andDo(print())
-                        .andExpect(status().isCreated());
+                        .andExpect(status().isCreated())
+                        .andExpect(jsonPath("id").exists())
+        ;
+        // 201 - created
 
     }
 }
