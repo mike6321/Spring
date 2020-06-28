@@ -1,16 +1,21 @@
 package me.choi.eatgo.application;
 
-import me.choi.eatgo.domain.*;
+import me.choi.eatgo.domain.MenuItem;
+import me.choi.eatgo.domain.MenuItemRepository;
+import me.choi.eatgo.domain.Restaurant;
+import me.choi.eatgo.domain.RestaurantRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 /**
@@ -53,6 +58,7 @@ public class RestaurantServiceTest {
         given(restaurantRepository.findAll()).willReturn(restaurants);
 
         given(restaurantRepository.findById(1004L)).willReturn(restaurant);
+
     }
 
     @Test
@@ -72,4 +78,16 @@ public class RestaurantServiceTest {
 
     }
 
+    @Test
+    public void addRestaurant() {
+
+        Restaurant restaurant = new Restaurant("BeRyong", "Busan");
+        Restaurant saved = new Restaurant("BeRyong", "Busan");
+
+        given(restaurantRepository.save(any())).willReturn(saved);
+
+        Restaurant created = restaurantService.addRestaurant(restaurant);
+
+
+    }
 }
