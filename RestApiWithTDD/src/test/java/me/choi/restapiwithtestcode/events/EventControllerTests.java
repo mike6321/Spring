@@ -42,8 +42,7 @@ public class EventControllerTests {
 
     @Test
     public void createEvent() throws Exception {
-        Event event = Event.builder()
-                    .id(100)
+        EventDto event = EventDto.builder()
                     .name("Spring")
                     .description("REST API Developmet with Spring")
                     .beginEnrollmentDateTime(LocalDateTime.of(2020,06,28,8,18))
@@ -54,10 +53,6 @@ public class EventControllerTests {
                     .maxPrice(200)
                     .limitOfEnrollment(100)
                     .location("강남역 D2 스타트업 팩토리")
-
-                    .free(true)
-                    .offline(false)
-                    .eventStatus(EventStatus.DRAFT)
                     .build()
                 ;
 
@@ -115,13 +110,25 @@ public class EventControllerTests {
 
     @Test
     public void create_Bad_Request_Empty_Input() throws Exception {
-        EventDto eventDto = EventDto.builder().build();
+        EventDto eventDto = EventDto.builder()
+                                .name("Spring")
+                                .description("REST API Developmet with Spring")
+                                .beginEnrollmentDateTime(LocalDateTime.of(2020,06,29,8,18))
+                                .closeEnrollmentDateTime(LocalDateTime.of(2020,06,28,8,18))
+                                .beginEventDateTime(LocalDateTime.of(2020,06,30,8,18))
+                                .endEventDateTime(LocalDateTime.of(2020,06,29,8,18))
+                                .basePrice(10000)
+                                .maxPrice(200)
+                                .limitOfEnrollment(100)
+                                .location("강남역 D2 스타트업 팩토리")
+                                .build()
+                                ;
 
         this.mockMvc.perform(post("/api/events")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(this.objectMapper.writeValueAsString(eventDto)))
-
-                .andExpect(status().isBadRequest())
+                //.andExpect(status().isCreated())
+                    .andExpect(status().isBadRequest())
         ;
     }
 }
