@@ -41,7 +41,7 @@ public class EventControllerTests {
 
 
     @Test
-    public void createEvent() throws Exception{
+    public void createEvent() throws Exception {
         Event event = Event.builder()
                     .id(100)
                     .name("Spring")
@@ -78,6 +78,38 @@ public class EventControllerTests {
                         .andExpect(jsonPath("eventStatus").value(EventStatus.DRAFT.name()))
         ;
         // 201 - created
+
+    }
+    @Test
+    public void createEvent_Bad_Request() throws Exception {
+        Event event = Event.builder()
+                    .id(100)
+                    .name("Spring")
+                    .description("REST API Developmet with Spring")
+                    .beginEnrollmentDateTime(LocalDateTime.of(2020,06,28,8,18))
+                    .closeEnrollmentDateTime(LocalDateTime.of(2020,06,29,8,18))
+                    .beginEventDateTime(LocalDateTime.of(2020,06,29,8,18))
+                    .endEventDateTime(LocalDateTime.of(2020,06,30,8,18))
+                    .basePrice(100)
+                    .maxPrice(200)
+                    .limitOfEnrollment(100)
+                    .location("강남역 D2 스타트업 팩토리")
+                    .free(true)
+                    .offline(false)
+                    .eventStatus(EventStatus.PUBLISHED)
+                    .build()
+                ;
+
+
+        mockMvc.perform(post("/api/events/")
+                        //.contentType("\"id\":\"mike6321\"")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaTypes.HAL_JSON)
+                        .content(objectMapper.writeValueAsString(event))  //json 문자열로 변형
+                        ) //요청본문
+                        .andDo(print())
+                        .andExpect(status().isBadRequest())
+        ;
 
     }
 }
