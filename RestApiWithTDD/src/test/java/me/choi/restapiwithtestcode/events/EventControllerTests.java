@@ -2,7 +2,6 @@ package me.choi.restapiwithtestcode.events;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.choi.restapiwithtestcode.common.TestDescription;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +74,9 @@ public class EventControllerTests {
                         .andExpect(jsonPath("free").value(false))
                         .andExpect(jsonPath("offline").value(true))
                         .andExpect(jsonPath("eventStatus").value(EventStatus.DRAFT.name()))
+                        .andExpect(jsonPath("_link.self").exists())
+                        .andExpect(jsonPath("_link.query-events").exists())
+                        .andExpect(jsonPath("_link.update-event").exists())
         ;
         // 201 - created
 

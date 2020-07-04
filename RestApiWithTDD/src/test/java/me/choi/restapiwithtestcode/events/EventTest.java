@@ -2,8 +2,14 @@ package me.choi.restapiwithtestcode.events;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * Project : rest-api-with-testcode
@@ -21,10 +27,12 @@ class EventTest {
         Event event = Event.builder()
                             .name("Spring Rest API")
                             .description("Rest API development with Spring")
-                            .build();
+                            .build()
+        ;
 
         assertThat(event).isNotNull();
     }
+
 
     @Test
     public void javaBean() {
@@ -44,12 +52,15 @@ class EventTest {
         assertThat(event.getDescription()).isEqualTo(description);
     }
 
-    @Test
-    public void testFree() {
+
+    @ParameterizedTest
+    @MethodSource("booleanIntProvider")
+    public void testFree(int basePrice, int maxPrice, boolean isFree) {
+
         //given
         Event event = Event.builder()
-                            .basePrice(0)
-                            .maxPrice(0)
+                            .basePrice(basePrice)
+                            .maxPrice(maxPrice)
                             .build()
         ;
 
@@ -57,35 +68,18 @@ class EventTest {
         event.update();
 
         //then
-        assertThat(event.isFree()).isTrue();
-
-        //given
-        event = Event.builder()
-                    .basePrice(100)
-                    .maxPrice(0)
-                    .build()
-        ;
-
-        //when
-        event.update();
-
-        //then
-        assertThat(event.isFree()).isFalse();
-
-        //given
-        event = Event.builder()
-                    .basePrice(0)
-                    .maxPrice(100)
-                    .build()
-        ;
-
-        //when
-        event.update();
-
-        //then
-        assertThat(event.isFree()).isFalse();
+        assertThat(event.isFree()).isEqualTo(isFree);
 
     }
+
+    static Stream<Arguments> booleanIntProvider() {
+        return Stream.of(
+                arguments(0, 0, true),
+                arguments(100, 0, false),
+                arguments(0, 1000, false)
+        );
+    }
+
 
     @Test
     public void testOffline() {
@@ -93,7 +87,7 @@ class EventTest {
         Event event = Event.builder()
                 .location("서울시 송파구")
                 .build()
-                ;
+        ;
 
         //when
         event.update();
@@ -105,7 +99,7 @@ class EventTest {
          event = Event.builder()
                         .location("")
                         .build()
-                        ;
+        ;
 
         //when
         event.update();
