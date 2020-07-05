@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -39,6 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @Import(RestDocsConfiguration.class)
+@ActiveProfiles("test")
 public class EventControllerTests {
 
     @Autowired
@@ -84,14 +86,14 @@ public class EventControllerTests {
                         .andExpect(jsonPath("free").value(false))
                         .andExpect(jsonPath("offline").value(true))
                         .andExpect(jsonPath("eventStatus").value(EventStatus.DRAFT.name()))
-                        .andExpect(jsonPath("_links.self").exists())
-                        .andExpect(jsonPath("_links.query-events").exists())
-                        .andExpect(jsonPath("_links.update-event").exists())
+
+
                         .andDo(document("create-event",
                                 links(
                                         linkWithRel("self").description("link to self"),
                                         linkWithRel("query-events").description("link to query events"),
-                                        linkWithRel("update-event").description("link to update an existing events")
+                                        linkWithRel("update-event").description("link to update an existing events"),
+                                        linkWithRel("profile").description("link to profile")
                                     ),
                                 requestHeaders(
                                         headerWithName(HttpHeaders.ACCEPT).description("accept header"),
@@ -113,7 +115,7 @@ public class EventControllerTests {
                                         headerWithName(HttpHeaders.LOCATION).description("LOCATION header"),
                                         headerWithName(HttpHeaders.CONTENT_TYPE).description("Content type")
                                 ),
-                                relaxedResponseFields(
+                                responseFields(
                                         fieldWithPath("id").description("id of new Event"),
                                         fieldWithPath("name").description("Name of new Event"),
                                         fieldWithPath("description").description("description of new Event"),
@@ -127,7 +129,15 @@ public class EventControllerTests {
                                         fieldWithPath("limitOfEnrollment").description("limitOfEnrollment of new Event"),
                                         fieldWithPath("free").description("free of new Event"),
                                         fieldWithPath("offline").description("offline of new Event"),
-                                        fieldWithPath("eventStatus").description("event Status of new Event")
+                                        fieldWithPath("eventStatus").description("event Status of new Event"),
+                                        fieldWithPath("_links.self.href").description("link to self"),
+
+                                        fieldWithPath("_links.query-events.href").description("link to query-events"),
+                                        fieldWithPath("_links.update-event.href").description("link to update-event"),
+                                        fieldWithPath("_links.profile.href").description("link to profile")
+
+
+
                                 )
                         ));
         ;

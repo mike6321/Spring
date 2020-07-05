@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 
 @Builder @AllArgsConstructor @NoArgsConstructor
-@Getter @Setter @EqualsAndHashCode(of = {"id", "name"})
+@Getter @Setter @EqualsAndHashCode(of = "id")
 @Entity
 public class Event {
 
