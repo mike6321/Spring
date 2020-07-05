@@ -1,6 +1,9 @@
 package me.choi.restapiwithtestcode.events;
 
-import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 /**
  * Project : rest-api-with-testcode
@@ -9,14 +12,10 @@ import org.springframework.hateoas.RepresentationModel;
  * @comment :
  * Time : 12:22 오전
  */
-public class EventResource extends RepresentationModel {
-    private Event event;
+public class EventResource extends EntityModel<Event> {
 
-    public EventResource(Event event) {
-        this.event = event;
-    }
-
-    public Event getEvent() {
-        return this.event;
+    public EventResource(Event content, Link... links) {
+        super(content, links);
+        add(linkTo(EventController.class).slash(content.getId()).withSelfRel());
     }
 }
