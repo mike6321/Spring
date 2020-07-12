@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
  * Time : 8:46 오후
  */
 public interface EventRepository extends JpaRepository<Event, Integer> {
+
 }
