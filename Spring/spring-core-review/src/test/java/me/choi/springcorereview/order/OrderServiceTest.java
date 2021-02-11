@@ -4,8 +4,9 @@ import me.choi.springcorereview.member.Grade;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberService;
 import me.choi.springcorereview.member.MemberServiceImpl;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Project : spring-core-review
@@ -25,6 +26,6 @@ public class OrderServiceTest {
         memberService.join(member);
 
         Order order = orderService.createOrder(memberId, "itemA", 10000);
-        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+        assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
 }
