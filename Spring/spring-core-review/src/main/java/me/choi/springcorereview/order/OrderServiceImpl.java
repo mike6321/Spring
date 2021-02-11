@@ -2,6 +2,7 @@ package me.choi.springcorereview.order;
 
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.discount.FixDiscountPolicy;
+import me.choi.springcorereview.discount.RateDiscountPolicy;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberRepository;
 import me.choi.springcorereview.member.MemoryMemberRepository;
@@ -16,7 +17,14 @@ import me.choi.springcorereview.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    // TODO: 2021/02/11 정률할인정책 변경
+    /**
+     * 클라이언트 소스 코드 수정 불가피
+     * 추상에도 의존 구체에도 의존
+     * DIP 위반 (추상에만 의존하지 않았음)
+     * */
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
