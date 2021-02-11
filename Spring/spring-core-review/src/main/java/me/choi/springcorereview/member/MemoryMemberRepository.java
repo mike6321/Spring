@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class MemoryMemberRepository implements MemberRepository{
 
-    Map<Long, Member> store = new HashMap<>();
+    private static Map<Long, Member> store = new HashMap<>();
 
     @Override
     public void save(Member member) {
