@@ -4,7 +4,6 @@ import me.choi.springcorereview.AppConfig;
 import me.choi.springcorereview.member.Grade;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberService;
-import me.choi.springcorereview.member.MemberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
