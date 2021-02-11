@@ -1,6 +1,8 @@
 package me.choi.springcorereview;
 
+import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.discount.FixDiscountPolicy;
+import me.choi.springcorereview.discount.RateDiscountPolicy;
 import me.choi.springcorereview.member.MemberService;
 import me.choi.springcorereview.member.MemberServiceImpl;
 import me.choi.springcorereview.member.MemoryMemberRepository;
@@ -27,7 +29,8 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
 
-    private FixDiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+    // TODO: 이것만 고치면 끝!  
+    private DiscountPolicy discountPolicy() {
+        return new RateDiscountPolicy();
     }
 }
