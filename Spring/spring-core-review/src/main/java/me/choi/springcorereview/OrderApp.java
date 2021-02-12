@@ -3,6 +3,8 @@ package me.choi.springcorereview;
 import me.choi.springcorereview.member.Grade;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberService;
+import me.choi.springcorereview.order.Order;
+import me.choi.springcorereview.order.OrderService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,21 +13,22 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
  * @author : jwdeveloper
  * @comment :
- * Time : 4:43 오후
+ * Time : 1:24 오후
  */
-public class MemberApp {
+public class OrderApp {
     public static void main(String[] args) {
-//        AppConfig appConfig = new AppConfig();
-//        MemberService memberService = appConfig.memberService();
-
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        OrderService orderService = applicationContext.getBean(OrderService.class);
         MemberService memberService = applicationContext.getBean(MemberService.class);
-//        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
-        Member member = new Member(1L, "memberA", Grade.VIP);
+
+        Long memberId = 1L;
+
+        Member member = new Member(memberId, "memberA", Grade.VIP);
         memberService.join(member);
 
-        Member findMember = memberService.findMember(1l);
-        System.out.println("find Member = " + findMember.getName());
-        System.out.println("new Member = " + member.getName());
+        Order order = orderService.createOrder(memberId, "itemA", 20000);
+
+        System.out.println(order);
+
     }
 }
