@@ -32,8 +32,8 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
 
-    // TODO: 이것만 고치면 끝!  
-    private DiscountPolicy discountPolicy() {
+    @Bean
+    public DiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
     }
 }
