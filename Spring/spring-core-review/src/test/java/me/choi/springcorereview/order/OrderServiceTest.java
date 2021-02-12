@@ -1,9 +1,10 @@
 package me.choi.springcorereview.order;
 
+import me.choi.springcorereview.AppConfig;
 import me.choi.springcorereview.member.Grade;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberService;
-import me.choi.springcorereview.member.MemberServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,8 +17,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Time : 5:23 오후
  */
 public class OrderServiceTest {
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        this.memberService = appConfig.memberService();
+        this.orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {
