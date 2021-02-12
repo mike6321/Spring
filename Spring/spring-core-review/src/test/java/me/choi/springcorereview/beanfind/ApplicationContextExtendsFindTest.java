@@ -3,7 +3,6 @@ package me.choi.springcorereview.beanfind;
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.discount.FixDiscountPolicy;
 import me.choi.springcorereview.discount.RateDiscountPolicy;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
@@ -14,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Project : spring-core-review
