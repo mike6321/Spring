@@ -9,15 +9,17 @@ package me.choi.springcorereview.singleton;
  */
 public class StatefulService {
 
-    private int price; // 상태를 유지하는 필드
+//    private int price; // 상태를 유지하는 필드
 
-    public void order(String name, int price) {
+    public int order(String name, int price) {
         System.out.println("name" + name + " price = " + price);
-        // TODO: 여기가 문제다!!! (Singleton)  
-        this.price = price;
-    }
-
-    public int getPrice() {
+        // TODO: 여기가 문제다!!! (Singleton)
+        // 무상태로 두어야함
+//        this.price = price;
         return price;
     }
+
+//    public int getPrice() {
+//        return price;
+//    }
 }
