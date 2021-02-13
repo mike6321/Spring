@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RateDiscountPolicy implements DiscountPolicy{
+    // TODO: 타입을 기준으로 의존성 주입을 하는데 현재는 RateDiscountPolicy만 Bean으로 등록되어있어서 중복이 일어나지 않는다.  
+    // TODO: 허나 FixDiscountPolicy가 Bean으로 등록되면 같은 타입이 두개이기떄문에 의존성 주입에 오류가 일어나지 않을까?  
 
     private int discountPercent = 10;
 
