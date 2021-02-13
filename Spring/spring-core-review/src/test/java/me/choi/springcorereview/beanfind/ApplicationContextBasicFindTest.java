@@ -10,6 +10,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Project : spring-core-review
@@ -46,6 +47,6 @@ public class ApplicationContextBasicFindTest {
     @Test
     @DisplayName("빈 이름으로 조회X")
     void findByBeanNameX() {
-        Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> applicationContext.getBean("xxx", MemberService.class));
+        assertThrows(NoSuchBeanDefinitionException.class, () -> applicationContext.getBean("xxx", MemberService.class));
     }
 }

@@ -2,10 +2,14 @@ package me.choi.springcorereview.scan;
 
 import me.choi.springcorereview.AutoAppConfig;
 import me.choi.springcorereview.member.MemberService;
+import me.choi.springcorereview.order.OrderService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Project : spring-core-review
@@ -28,5 +32,7 @@ public class AutoAppConfigTest {
     void basicScan() {
         MemberService memberService = applicationContext.getBean(MemberService.class);
         assertThat(memberService).isInstanceOf(MemberService.class);
+        //basePackages = "me.choi.springcorereview.member"
+//        assertThrows(NoSuchBeanDefinitionException.class, () -> applicationContext.getBean(OrderService.class));
     }
 }
