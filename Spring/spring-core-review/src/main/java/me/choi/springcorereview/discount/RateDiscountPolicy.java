@@ -2,6 +2,7 @@ package me.choi.springcorereview.discount;
 
 import me.choi.springcorereview.member.Grade;
 import me.choi.springcorereview.member.Member;
+import org.springframework.stereotype.Component;
 
 /**
  * Project : spring-core-review
@@ -10,6 +11,7 @@ import me.choi.springcorereview.member.Member;
  * @comment :
  * Time : 5:54 오후
  */
+@Component
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;

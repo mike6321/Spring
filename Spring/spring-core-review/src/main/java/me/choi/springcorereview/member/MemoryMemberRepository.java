@@ -1,5 +1,7 @@
 package me.choi.springcorereview.member;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ import java.util.Map;
  * @comment :
  * Time : 4:33 오후
  */
+@Component
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();

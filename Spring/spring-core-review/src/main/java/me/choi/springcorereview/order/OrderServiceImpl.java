@@ -3,6 +3,8 @@ package me.choi.springcorereview.order;
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Project : spring-core-review
@@ -11,11 +13,13 @@ import me.choi.springcorereview.member.MemberRepository;
  * @comment :
  * Time : 5:13 오후
  */
+@Component
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
