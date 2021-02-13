@@ -1,10 +1,9 @@
 package me.choi.springcorereview.order;
 
-import lombok.RequiredArgsConstructor;
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +14,21 @@ import org.springframework.stereotype.Component;
  * Time : 5:13 오후
  */
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+
+// TODO: [Primary, Qualifier의 의문점] junwoochoi 2021/02/14 12:11 오전
+/**
+ * 그래 좋다 편리하게 두개의 의존성이 중복될떄 어노테이선 하나만으로 편리하게 할 수 있다는 점
+ * 허나 저렇게 지정을 해버리면 지정을 안한것은 못쓰지 않을까?
+ *
+ * FixDisCountPolicy를 Primary로 지정하면
+ * 나머지 RateDiscountPolicy는 못쓰게 되니깐...
+ *
+ * 생성자를 똑같은 것을 두개 만들 수 는 없기에...
+ *
+ * InteliJ Compile error Message
+ * 'OrderServiceImpl(MemberRepository, DiscountPolicy)' is already defined in 'me.choi.springcorereview.order.OrderServiceImpl'
+ * */
 public class OrderServiceImpl implements OrderService{
 
 //    @Autowired private MemberRepository memberRepository;
@@ -68,9 +81,44 @@ public class OrderServiceImpl implements OrderService{
 //        this.discountPolicy = discountPolicy;
 //    }
 
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("1. OrderServiceImpl");
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     // TODO: [생성자가 하나일 땐 @Autowired 생략가능] junwoochoi 2021/02/13 7:14 오후
+    // TODO: [DiscountPolicy를 구현체인 FixDiscountPolicy, FixDiscountPolicy 두개가 빈으로 등록되어 있을 때] junwoochoi 2021/02/13 11:35 오후
+    /**
+     * 1. 파라미터 명을 구현 대상으로 설정
+     * (MemberRepository memberRepository, DiscountPolicy discountPolicy) -> (MemberRepository memberRepository, DiscountPolicy fixDiscountPolicy)
+     * todo : 파라미터 명을 구현 대상으로 설정
+     * */
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy fixDiscountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = fixDiscountPolicy;
+//    }
+    /**
+     * 2. Qualifier 설정
+     * @Qualifier("mainDiscountPolicy")
+     * public class FixDiscountPolicy implements DiscountPolicy{
+     * }
+     * todo : Qualifier
+     * */
+//    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
+
+    /**
+     * 2. Primary 설정
+     * @Qualifier("mainDiscountPolicy")
+     * @Primary
+     * public class FixDiscountPolicy implements DiscountPolicy{
+     * }
+     * todo : Primary
+     * */
 //    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("1. OrderServiceImpl");
 //        this.memberRepository = memberRepository;
 //        this.discountPolicy = discountPolicy;
 //    }
