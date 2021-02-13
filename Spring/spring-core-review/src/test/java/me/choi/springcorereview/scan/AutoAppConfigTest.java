@@ -1,8 +1,11 @@
 package me.choi.springcorereview.scan;
 
 import me.choi.springcorereview.AutoAppConfig;
+import me.choi.springcorereview.discount.DiscountPolicy;
+import me.choi.springcorereview.member.MemberRepository;
 import me.choi.springcorereview.member.MemberService;
 import me.choi.springcorereview.order.OrderService;
+import me.choi.springcorereview.order.OrderServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -34,5 +37,19 @@ public class AutoAppConfigTest {
         assertThat(memberService).isInstanceOf(MemberService.class);
         //basePackages = "me.choi.springcorereview.member"
 //        assertThrows(NoSuchBeanDefinitionException.class, () -> applicationContext.getBean(OrderService.class));
+    }
+
+    @Test
+    void skipAutoWired() {
+        //현재 OrderServiceImpl 을 생략한 상태
+        OrderServiceImpl bean1 = applicationContext.getBean(OrderServiceImpl.class);
+        assertThat(bean1).isNotNull();
+
+        MemberRepository bean2 = applicationContext.getBean(MemberRepository.class);
+        System.out.println(bean2);
+        assertThat(bean2).isNotNull();
+
+        DiscountPolicy bean3 = applicationContext.getBean(DiscountPolicy.class);
+        assertThat(bean3).isNotNull();
     }
 }
