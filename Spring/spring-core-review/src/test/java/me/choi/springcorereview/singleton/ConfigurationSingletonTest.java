@@ -53,7 +53,17 @@ public class ConfigurationSingletonTest {
         /**
          * 헐 똑같네?
          * */
+    }
+    @Test
+    void notConfigurationTest() {
+        MemberServiceImpl memberService = applicationContext.getBean("memberService", MemberServiceImpl.class);
+        OrderServiceImpl orderService = applicationContext.getBean("orderService", OrderServiceImpl.class);
+        MemberRepository memberRepository = applicationContext.getBean("memberRepository", MemberRepository.class);
 
+        MemberRepository memberRepository1 = memberService.getMemberRepository();
+        MemberRepository memberRepository2 = orderService.getMemberRepository();
 
+        assertThat(memberRepository1).isNotSameAs(memberRepository2);
+        assertThat(memberRepository1).isNotSameAs(memberRepository);
     }
 }

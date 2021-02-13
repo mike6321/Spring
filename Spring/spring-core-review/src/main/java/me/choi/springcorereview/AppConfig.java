@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
  * 3. AppConfig.orderService
  * 한 번만 호출한다.
  */
-@Configuration
+//@Configuration
 public class AppConfig {
     @Bean
     public MemberService memberService() {
