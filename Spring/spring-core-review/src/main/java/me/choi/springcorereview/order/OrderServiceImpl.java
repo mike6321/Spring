@@ -1,5 +1,6 @@
 package me.choi.springcorereview.order;
 
+import lombok.RequiredArgsConstructor;
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  * Time : 5:13 오후
  */
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
 //    @Autowired private MemberRepository memberRepository;
@@ -67,11 +69,11 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     // TODO: [생성자가 하나일 땐 @Autowired 생략가능] junwoochoi 2021/02/13 7:14 오후
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("1. OrderServiceImpl");
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("1. OrderServiceImpl");
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
