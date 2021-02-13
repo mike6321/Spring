@@ -63,7 +63,7 @@ public class ConfigurationSingletonTest {
         MemberRepository memberRepository1 = memberService.getMemberRepository();
         MemberRepository memberRepository2 = orderService.getMemberRepository();
 
-        assertThat(memberRepository1).isNotSameAs(memberRepository2);
-        assertThat(memberRepository1).isNotSameAs(memberRepository);
+        assertThat(memberRepository1).isSameAs(memberRepository2);
+//        assertThat(memberRepository1).isNotSameAs(memberRepository);
     }
 }

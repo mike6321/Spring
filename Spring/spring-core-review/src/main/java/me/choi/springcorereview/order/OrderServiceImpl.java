@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService{
      *
      * */
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
     // TODO: [일반 메서드 주입] junwoochoi 2021/02/13 8:10 오후
     /**
@@ -69,7 +69,6 @@ public class OrderServiceImpl implements OrderService{
 //    }
 
     // TODO: [생성자가 하나일 땐 @Autowired 생략가능] junwoochoi 2021/02/13 7:14 오후
-    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         System.out.println("1. OrderServiceImpl");
         this.memberRepository = memberRepository;
