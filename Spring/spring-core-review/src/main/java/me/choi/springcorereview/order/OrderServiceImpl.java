@@ -1,5 +1,6 @@
 package me.choi.springcorereview.order;
 
+import me.choi.springcorereview.annotation.MainDiscountPolicy;
 import me.choi.springcorereview.discount.DiscountPolicy;
 import me.choi.springcorereview.member.Member;
 import me.choi.springcorereview.member.MemberRepository;
@@ -13,9 +14,6 @@ import org.springframework.stereotype.Component;
  * @comment :
  * Time : 5:13 오후
  */
-@Component
-//@RequiredArgsConstructor
-
 // TODO: [Primary, Qualifier의 의문점] junwoochoi 2021/02/14 12:11 오전
 /**
  * 그래 좋다 편리하게 두개의 의존성이 중복될떄 어노테이선 하나만으로 편리하게 할 수 있다는 점
@@ -29,6 +27,9 @@ import org.springframework.stereotype.Component;
  * InteliJ Compile error Message
  * 'OrderServiceImpl(MemberRepository, DiscountPolicy)' is already defined in 'me.choi.springcorereview.order.OrderServiceImpl'
  * */
+
+@Component
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
 //    @Autowired private MemberRepository memberRepository;
@@ -81,11 +82,11 @@ public class OrderServiceImpl implements OrderService{
 //        this.discountPolicy = discountPolicy;
 //    }
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("1. OrderServiceImpl");
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("1. OrderServiceImpl");
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     // TODO: [생성자가 하나일 땐 @Autowired 생략가능] junwoochoi 2021/02/13 7:14 오후
     // TODO: [DiscountPolicy를 구현체인 FixDiscountPolicy, FixDiscountPolicy 두개가 빈으로 등록되어 있을 때] junwoochoi 2021/02/13 11:35 오후
@@ -104,11 +105,16 @@ public class OrderServiceImpl implements OrderService{
      * public class FixDiscountPolicy implements DiscountPolicy{
      * }
      * todo : Qualifier
+     * todo : Qualifier - Refactoring with Annotaion
      * */
 //    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
 //        this.memberRepository = memberRepository;
 //        this.discountPolicy = discountPolicy;
 //    }
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     /**
      * 2. Primary 설정
