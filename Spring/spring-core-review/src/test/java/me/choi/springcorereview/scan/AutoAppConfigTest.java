@@ -49,7 +49,7 @@ public class AutoAppConfigTest {
         System.out.println(bean2);
         assertThat(bean2).isNotNull();
 
-        DiscountPolicy bean3 = applicationContext.getBean(DiscountPolicy.class);
-        assertThat(bean3).isNotNull();
+//        DiscountPolicy bean3 = applicationContext.getBean(DiscountPolicy.class);
+//        assertThat(bean3).isNotNull();
     }
 }
