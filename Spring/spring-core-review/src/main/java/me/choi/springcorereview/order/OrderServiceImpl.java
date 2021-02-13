@@ -29,9 +29,7 @@ public class OrderServiceImpl implements OrderService{
      * orderServiceImpl.createOrder(...);
      * -> NPE가 발생한다.
      * 필드주입은 원하는 인스턴스를 설정하는 부분이 없기떄문에 테스트를 할 방법이 없다.
-     * 이를 방지하기 위해서 setter를 열어야한다. 클라이언트
-     *
-     *
+     * 이를 방지하기 위해서 setter를 열어야한다. 클라이언트 코드에 대한 수정이 불가피
      * */
 
     private final MemberRepository memberRepository;
