@@ -1,8 +1,5 @@
 package me.choi.springcorereview.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
 /**
  * Project : spring-core-review
  *
@@ -17,7 +14,7 @@ import org.springframework.beans.factory.InitializingBean;
  * 이름변경 불가
  * 내가 코드를 고칠 수 없는 외부 라이브러리에 적용 불가
  * */
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {//implements InitializingBean, DisposableBean {
     private String url;
 
     public NetworkClient() {
@@ -42,16 +39,30 @@ public class NetworkClient implements InitializingBean, DisposableBean {
         System.out.println("close" + url);
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("NetworkClient afterPropertiesSet");
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//        System.out.println("NetworkClient afterPropertiesSet");
+//        connect();
+//        call("초기화 연결 메세지");
+//    }
+
+//    @Override
+//    public void destroy() throws Exception {
+//        System.out.println("NetworkClient destroy");
+//        disconnect();
+//    }
+
+    // TODO: [설정 정보 사용] junwoochoi 2021/02/14 12:57 오후
+    /**
+     * @Bean(initMethod = "init", destroyMethod = "close")
+     * */
+    public void init() throws Exception {
+        System.out.println("NetworkClient init");
         connect();
         call("초기화 연결 메세지");
     }
-
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("NetworkClient destroy");
+    public void close() throws Exception {
+        System.out.println("NetworkClient close");
         disconnect();
     }
 }
