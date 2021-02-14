@@ -35,18 +35,64 @@ import javax.servlet.http.HttpServletRequest;
  * */
 
 // TODO: request Scope Example1 - ObjectProvider의 사용 2021/02/14 4:09 오후
+//@Controller
+//@RequiredArgsConstructor
+//public class LogDemoController {
+//
+//    private final LogDemoService logDemoService;
+//    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
+//
+//    @RequestMapping("log-demo")
+//    @ResponseBody
+//    public String logDemo(HttpServletRequest request) throws InterruptedException {
+//        MyLogger myLogger = myLoggerObjectProvider.getObject();
+//        String requestURL = request.getRequestURI().toString();
+//        myLogger.setRequestURL(requestURL);
+//
+//        myLogger.log("controller test");
+//        Thread.sleep(1000);
+//        logDemoService.logic("testId");
+//
+//        return "OK";
+//    }
+//}
+
+// TODO: proxyMode 적용 2021/02/14 4:20 오후
+/**
+ * @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+ *
+ * my Loggerclass me.choi.springcorereview.requestscope.common.MyLogger$$EnhancerBySpringCGLIB$$f05d6583
+ * [df339add-f454-4d7e-bfb5-bec9b56744b2] request scope bean create : me.choi.springcorereview.requestscope.common.MyLogger@617f32f8
+ * [df339add-f454-4d7e-bfb5-bec9b56744b2] [/log-demo] [controller test]
+ * [df339add-f454-4d7e-bfb5-bec9b56744b2] [/log-demo] [service id = testId]
+ * [df339add-f454-4d7e-bfb5-bec9b56744b2] request scope bean close : me.choi.springcorereview.requestscope.common.MyLogger@617f32f8
+ *
+ * 진짜 MyLogger가 아닌 가짜 MyLogger를 CGLIB을 통해 주입한다.
+ *
+ * 정리하자면
+ * 1. 서버 구동 시 request 요청이 없기에 오류가 발생한다.
+ * 2. proxyMode를 적용하면 가짜 Proxy 인스턴스를 생성해서 오류를 방지하여 서버를 구동할 수 있다.
+ * 3. myLogger.setRequestURL(requestURL); 해당 요청이 들어오는 시점에 진짜 인스턴스를 생성한다.
+ * - 가짜 프록시 객체는 요청이 들어오면 그때 내부에서 진짜 빈을 요청하는 Delegation 로직이 들어있다.
+ *
+ * 이 가짜 프록시 객체는 빈으로 등록되었기에 계속 재사용한다.
+ * EnhancerBySpringCGLIB$$f05d6583
+ * EnhancerBySpringCGLIB$$f05d6583
+ * */
 @Controller
 @RequiredArgsConstructor
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request) throws InterruptedException {
-        MyLogger myLogger = myLoggerObjectProvider.getObject();
         String requestURL = request.getRequestURI().toString();
+
+        System.out.println("my Logger" + myLogger.getClass());
+
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");
