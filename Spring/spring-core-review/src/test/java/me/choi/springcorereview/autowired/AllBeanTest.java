@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.*;
  * Project : spring-core-review
  *
  * @author : jwdeveloper
- * @comment : 전략패턴 적용
+ * @comment : 전략패턴 적
  * Time : 12:48 오전
  */
 public class AllBeanTest {
@@ -53,6 +53,7 @@ public class AllBeanTest {
          * Primary, Qualifier를 사용하더라도
          * todo 나머지 의존관계 있는 구체 클래스도 Bean은 생성이 되는구나!!!
          * */
+        // TODO: 전략패턴 적용
         @Autowired
         public DiscountService(Map<String, DiscountPolicy> policyMap, List<DiscountPolicy> policies) {
             this.policyMap = policyMap;
