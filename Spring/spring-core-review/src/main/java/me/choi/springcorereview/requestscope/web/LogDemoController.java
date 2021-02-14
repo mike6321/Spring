@@ -2,6 +2,7 @@ package me.choi.springcorereview.requestscope.web;
 
 import lombok.RequiredArgsConstructor;
 import me.choi.springcorereview.requestscope.common.MyLogger;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @comment :
  * Time : 3:43 오후
  */
-// TODO: 서버 기동 시 오류 발생 2021/02/14 3:51 오후
+// TODO: request Scope Example1 - 서버 기동 시 오류 발생 2021/02/14 3:51 오후
 /**
  * 오류발생이유
  * MyLogger의 Scope은 현재 request이다.
@@ -32,20 +33,24 @@ import javax.servlet.http.HttpServletRequest;
  * consider defining a scoped proxy for this bean if you intend to refer to it from a singleton; nested exception is java.lang.IllegalStateException: No thread-bound request found:
  * Are you referring to request attributes outside of an actual web request, or processing a request outside of the originally receiving thread? If you are actually operating within a web request and still receive this message, your code is probably running outside of DispatcherServlet: In this case, use RequestContextListener or RequestContextFilter to expose the current request.
  * */
+
+// TODO: request Scope Example1 - ObjectProvider의 사용 2021/02/14 4:09 오후
 @Controller
 @RequiredArgsConstructor
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final MyLogger myLogger;
+    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
 
     @RequestMapping("log-demo")
     @ResponseBody
-    public String logDemo(HttpServletRequest request) {
+    public String logDemo(HttpServletRequest request) throws InterruptedException {
+        MyLogger myLogger = myLoggerObjectProvider.getObject();
         String requestURL = request.getRequestURI().toString();
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");
+        Thread.sleep(1000);
         logDemoService.logic("testId");
 
         return "OK";

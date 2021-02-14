@@ -2,6 +2,7 @@ package me.choi.springcorereview.requestscope.web;
 
 import lombok.RequiredArgsConstructor;
 import me.choi.springcorereview.requestscope.common.MyLogger;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LogDemoService {
 
-    private final MyLogger myLogger;
+//    private final MyLogger myLogger;
+    private final ObjectProvider<MyLogger> myLoggerObjectProvider;
 
     public void logic(String testId) {
+        MyLogger myLogger = myLoggerObjectProvider.getObject();
         myLogger.log("service id = " + testId);
     }
 }
