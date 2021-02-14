@@ -9,6 +9,10 @@ package me.choi.springcorereview.lifecycle;
  */
 // TODO: 빈의 생명주기  
 // TODO: [InitializingBean, DisposableBean] junwoochoi 2021/02/14 12:49 오후
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /**
  * 내 코드가 스프링에 너무 의존적이게 된다.
  * 이름변경 불가
@@ -56,11 +60,31 @@ public class NetworkClient {//implements InitializingBean, DisposableBean {
     /**
      * @Bean(initMethod = "init", destroyMethod = "close")
      * */
+//    public void init() throws Exception {
+//        System.out.println("NetworkClient init");
+//        connect();
+//        call("초기화 연결 메세지");
+//    }
+//    public void close() throws Exception {
+//        System.out.println("NetworkClient close");
+//        disconnect();
+//    }
+    
+    // TODO: [@PostConstruct, @PreDestroy] junwoochoi 2021/02/14 1:01 오후
+    /**
+     * import javax.annotation.PostConstruct;
+     * import javax.annotation.PreDestroy;
+     *
+     * 굳이 스프링이 아니라도 자바 기본 api이기 떄문에 스프링에서 권장한다. (JSR-250)
+     * 외부 라이브러리에는 적용하지 못한다. - 외부라이브러리는 설정 정보를 사용하자!
+     * */
+    @PostConstruct
     public void init() throws Exception {
         System.out.println("NetworkClient init");
         connect();
         call("초기화 연결 메세지");
     }
+    @PreDestroy
     public void close() throws Exception {
         System.out.println("NetworkClient close");
         disconnect();
