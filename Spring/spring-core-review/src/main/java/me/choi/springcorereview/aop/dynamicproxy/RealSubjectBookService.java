@@ -12,4 +12,9 @@ public class RealSubjectBookService implements BookService{
     public void rent(Book book) {
         System.out.println("rent : " + book.getName());
     }
+
+    @Override
+    public void returnBook(Book book) {
+        System.out.println("return : " + book.getName());
+    }
 }
