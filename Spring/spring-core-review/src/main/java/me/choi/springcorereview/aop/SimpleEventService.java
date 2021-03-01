@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
  * Project : spring-core-review
  *
  * @author : jwdeveloper
- * @comment :
+ * @comment : RealSubject
  * Time : 8:18 오후
  */
 @Service
