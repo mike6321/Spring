@@ -22,5 +22,6 @@ public class AppRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         eventService.createEvent();
         eventService.publishEvent();
+        eventService.deleteEvent();
     }
 }
