@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SimpleEventService implements EventService{
+
+    @PerfLogging
     @Override
     public void createEvent() {
         // TODO: AOP RealSubject 직접 수정 2021/03/01 8:25 오후
@@ -26,6 +28,7 @@ public class SimpleEventService implements EventService{
 //        System.out.println(System.currentTimeMillis() - begin);
     }
 
+    @PerfLogging
     @Override
     public void publishEvent() {
 
