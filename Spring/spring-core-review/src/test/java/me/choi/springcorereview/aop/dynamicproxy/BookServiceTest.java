@@ -17,6 +17,12 @@ class BookServiceTest {
 
 //    private BookService bookService = new BookServiceProxy(new RealSubjectBookService());
 
+    // TODO: 자바의 프록시는 인터페이스 기반의 프록시만을 생성할 수 있다. 2021/03/02 12:29 오전
+    /**
+     * 클래스 기반의 프록시 생성 불가
+     * RealSubjectBookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(), new Class[]{BookService.class},
+     * 불가!
+     * */
     BookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(), new Class[]{BookService.class},
             new InvocationHandler() {
                 BookService bookService = new RealSubjectBookService();
