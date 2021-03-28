@@ -19,3 +19,10 @@ public class HelloController {
         return "index";
     }
 }
+// TODO: 자동 설정 우선순위 2021/03/28 2:10 오후
+/**
+ * 1. 애플리케이션에서 설정한 빈 등록
+ * 2. 자동설정으로 제공하는 빈 등록
+ * META-INF / spring.factories
+ * EnableAutoConfiguration
+ * */
