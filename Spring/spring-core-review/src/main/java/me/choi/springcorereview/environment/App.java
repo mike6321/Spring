@@ -33,5 +33,29 @@ public class App implements ApplicationRunner {
         Environment environment = ctx.getEnvironment();
         System.out.println(Arrays.toString(environment.getActiveProfiles()));
         System.out.println(Arrays.toString(environment.getDefaultProfiles()));
+        
+        // TODO: Environment property 설정 : VM Option 2021/04/07 1:29 오전
+        /**
+         * VM Option
+         * -Dapp.name=junwoo
+         * */
+
+        String name1 = environment.getProperty("app.name");
+        String name2 = environment.getProperty("app.about");
+        System.out.println(name1);
+        System.out.println(name2);
+
+        // TODO: Environment property 설정 : 파일생성 2021/04/07 1:34 오전
+        /**
+         * @PropertySource("파일위치") 사용
+         *
+         * @SpringBootApplication
+         * @PropertySource("classpath:/app.properties")
+         * public class EnvironmentExercise {
+         *     public static void main(String[] args) {
+         *         SpringApplication.run(EnvironmentExercise.class, args);
+         *     }
+         * }
+         * */
     }
 }
