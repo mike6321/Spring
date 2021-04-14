@@ -14,9 +14,13 @@ public class UserServiceApplication {
 
 }
 /**
-mvn spring-boot:run -Dspring-boot.run.jvmArguments='-Dserver.port=9003'
-
-mvn clean
-mvn compile package
-java -jar -Dserver.port=9004 ./target/user-service-0.0.1-SNAPSHOT.jar
+ * VM OPTION : -Dserver.port=9002
+ * mvn run : mvn spring-boot:run -Dspring-boot.run.jvmArguments='-Dserver.port=9003'
+ * commandLine run :
+ * mvn clean
+ * mvn compile package
+ * java -jar -Dserver.port=9004 ./target/user-service-0.0.1-SNAPSHOT.jar
+ *
+ * 랜덤포트 일때
+ * mvn spring-boot:run
  * */
