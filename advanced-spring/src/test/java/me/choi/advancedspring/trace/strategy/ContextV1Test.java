@@ -2,7 +2,6 @@ package me.choi.advancedspring.trace.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 import me.choi.advancedspring.trace.strategy.code.strategy.ContextV1;
-import me.choi.advancedspring.trace.strategy.code.strategy.Strategy;
 import me.choi.advancedspring.trace.strategy.code.strategy.StrategyLogic1;
 import me.choi.advancedspring.trace.strategy.code.strategy.StrategyLogic2;
 import org.junit.jupiter.api.Test;
@@ -47,6 +46,15 @@ public class ContextV1Test {
 
         StrategyLogic2 strategy2 = new StrategyLogic2();
         ContextV1 contextV2 = new ContextV1(strategy2);
+        contextV2.execute();
+    }
+
+    @Test
+    void strategyV2() {
+        ContextV1 contextV1 = new ContextV1(() -> log.info("비즈니스 로직1 실행"));
+        contextV1.execute();
+
+        ContextV1 contextV2 = new ContextV1(() -> log.info("비즈니스 로직2 실행"));
         contextV2.execute();
     }
 
