@@ -1,4 +1,4 @@
-package me.choi.advancedspring.trace.strategy.code.strategy;
+package me.choi.advancedspring.trace.strategy.code;
 
 import lombok.extern.slf4j.Slf4j;
 

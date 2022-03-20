@@ -1,6 +1,7 @@
-package me.choi.advancedspring.trace.strategy.code.strategy;
+package me.choi.advancedspring.trace.strategy.code.v1;
 
 import lombok.extern.slf4j.Slf4j;
+import me.choi.advancedspring.trace.strategy.code.Strategy;
 
 /**
  * 필드에 전략을 보관하는 방식

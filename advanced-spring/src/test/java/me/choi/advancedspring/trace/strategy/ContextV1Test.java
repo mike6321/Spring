@@ -1,9 +1,9 @@
 package me.choi.advancedspring.trace.strategy;
 
 import lombok.extern.slf4j.Slf4j;
-import me.choi.advancedspring.trace.strategy.code.strategy.ContextV1;
-import me.choi.advancedspring.trace.strategy.code.strategy.StrategyLogic1;
-import me.choi.advancedspring.trace.strategy.code.strategy.StrategyLogic2;
+import me.choi.advancedspring.trace.strategy.code.v1.ContextV1;
+import me.choi.advancedspring.trace.strategy.code.StrategyLogic1;
+import me.choi.advancedspring.trace.strategy.code.StrategyLogic2;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
